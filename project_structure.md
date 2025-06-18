@@ -799,7 +799,7 @@
     echo "Building Docker images..."
     docker-compose build
     
-    echo "✅ Setup complete!"
+    echo "Setup complete!"
     echo ""
     echo "Next steps:"
     echo "1. Activate the Python environment: source venv/bin/activate"
