@@ -1,0 +1,138 @@
+# Docker Compose Configuration
+version: '3.8'
+
+services:
+  # Main simulation environment
+  quantum-hale-sim:
+    build:
+      context: .
+      dockerfile: Dockerfile.simulation
+    container_name: quantum-hale-simulation
+    volumes:
+      - ./src:/workspace/src:rw
+      - ./configs:/workspace/configs:ro
+      - ./data:/workspace/data:rw
+      - ./models:/workspace/models:ro
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+    environment:
+      - DISPLAY=${DISPLAY}
+      - PYTHONPATH=/workspace/src
+      - GAZEBO_MODEL_PATH=/workspace/models/gazebo
+      - ROS_DOMAIN_ID=42
+    networks:
+      - quantum-hale-net
+    ports:
+      - "8080:8080"  # Web dashboard
+      - "9090:9090"  # Prometheus metrics
+      - "3000:3000"  # Grafana
+    privileged: true  # Required for Gazebo simulation
+    
+  # Network simulation service
+  network-simulator:
+    build:
+      context: .
+      dockerfile: Dockerfile.network-sim
+    container_name: ns3-network-sim
+    volumes:
+      - ./src/network_sim:/workspace/network_sim:rw
+      - ./data:/workspace/data:rw
+    environment:
+      - PYTHONPATH=/workspace
+    networks:
+      - quantum-hale-net
+    depends_on:
+      - influxdb
+      
+  # Quantum simulation service
+  quantum-simulator:
+    build:
+      context: .
+      dockerfile: Dockerfile.quantum-sim
+    container_name: qiskit-quantum-sim
+    volumes:
+      - ./src/quantum_comms:/workspace/quantum_comms:rw
+      - ./data:/workspace/data:rw
+    environment:
+      - PYTHONPATH=/workspace
+      - QISKIT_SETTINGS=/workspace/configs/qiskit_settings.json
+    networks:
+      - quantum-hale-net
+    depends_on:
+      - redis
+      
+  # Database services
+  influxdb:
+    image: influxdb:2.7
+    container_name: quantum-hale-influxdb
+    environment:
+      - DOCKER_INFLUXDB_INIT_MODE=setup
+      - DOCKER_INFLUXDB_INIT_USERNAME=admin
+      - DOCKER_INFLUXDB_INIT_PASSWORD=quantum-hale-2024
+      - DOCKER_INFLUXDB_INIT_ORG=quantum-hale
+      - DOCKER_INFLUXDB_INIT_BUCKET=simulation-data
+    volumes:
+      - influxdb-storage:/var/lib/influxdb2
+      - ./configs/influxdb.conf:/etc/influxdb2/influxdb.conf:ro
+    ports:
+      - "8086:8086"
+    networks:
+      - quantum-hale-net
+      
+  redis:
+    image: redis:7-alpine
+    container_name: quantum-hale-redis
+    volumes:
+      - redis-storage:/data
+    ports:
+      - "6379:6379"
+    networks:
+      - quantum-hale-net
+      
+  # Monitoring and visualization
+  grafana:
+    image: grafana/grafana:10.2.0
+    container_name: quantum-hale-grafana
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=quantum-hale-2024
+      - GF_INSTALL_PLUGINS=grafana-clock-panel,grafana-simple-json-datasource
+    volumes:
+      - grafana-storage:/var/lib/grafana
+      - ./configs/grafana/dashboards:/etc/grafana/provisioning/dashboards:ro
+      - ./configs/grafana/datasources:/etc/grafana/provisioning/datasources:ro
+    ports:
+      - "3000:3000"
+    networks:
+      - quantum-hale-net
+    depends_on:
+      - influxdb
+      
+  prometheus:
+    image: prom/prometheus:v2.47.0
+    container_name: quantum-hale-prometheus
+    volumes:
+      - ./configs/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus-storage:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.retention.time=200h'
+      - '--web.enable-lifecycle'
+    ports:
+      - "9090:9090"
+    networks:
+      - quantum-hale-net
+
+networks:
+  quantum-hale-net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+
+volumes:
+  influxdb-storage:
+  redis-storage:
+  grafana-storage:
+  prometheus-storage: 

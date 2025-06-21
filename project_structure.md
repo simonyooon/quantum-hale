@@ -1,5 +1,4 @@
 # Project Structure for Quantum-Compatible HALE Drone System
-# ============================================================
 
 # Directory Structure:
 # quantum-hale-drone/

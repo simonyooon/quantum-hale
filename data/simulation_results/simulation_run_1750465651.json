@@ -1,0 +1,197 @@
+config:
+  aircraft_params: !!python/object:flight_sim.hale_dynamics.AircraftParameters
+    aileron_effectiveness: 0.1
+    aspect_ratio: 27.0
+    cd0: 0.02
+    cl_alpha: 5.0
+    elevator_effectiveness: 0.1
+    endurance_max: 86400.0
+    length: 15.0
+    mass_empty: 1200.0
+    mass_max_takeoff: 2500.0
+    max_speed: 120.0
+    oswald_efficiency: 0.85
+    propeller_efficiency: 0.8
+    range_max: 500000.0
+    rudder_effectiveness: 0.1
+    service_ceiling: 20000.0
+    specific_fuel_consumption: 0.0001
+    stall_speed: 25.0
+    thrust_max: 5000.0
+    wing_area: 45.0
+    wingspan: 35.0
+  duration: 60
+  enable_qkd: true
+  ground_stations:
+  - !!python/tuple
+    - 0
+    - 0
+  jamming_sources:
+  - active_time:
+    - 1800
+    - 3600
+    frequency_range:
+    - 2.4e9
+    - 2.5e9
+    position:
+    - 25000
+    - 25000
+    - 0
+    power: 50
+  mission_type: !!python/object/apply:flight_sim.autonomy_engine.MissionType
+  - isr_patrol
+  network_topology: mesh
+  num_drones: 2
+  output_directory: data/simulation_results
+  real_time_factor: 1.0
+  save_network_data: true
+  save_quantum_data: true
+  save_telemetry: true
+  security_level: !!python/object/apply:quantum_comms.pqc_handshake.SecurityLevel
+  - 3
+  timestep: 0.1
+  waypoints:
+  - !!python/object:flight_sim.autonomy_engine.Waypoint
+    action: fly_to
+    altitude: 20000
+    altitude_tolerance: 50.0
+    duration: 0.0
+    heading: null
+    latitude: 0
+    longitude: 0
+    speed: 50.0
+    tolerance: 100.0
+  - !!python/object:flight_sim.autonomy_engine.Waypoint
+    action: fly_to
+    altitude: 20000
+    altitude_tolerance: 50.0
+    duration: 0.0
+    heading: null
+    latitude: 50000
+    longitude: 0
+    speed: 50.0
+    tolerance: 100.0
+  - !!python/object:flight_sim.autonomy_engine.Waypoint
+    action: fly_to
+    altitude: 20000
+    altitude_tolerance: 50.0
+    duration: 0.0
+    heading: null
+    latitude: 50000
+    longitude: 50000
+    speed: 50.0
+    tolerance: 100.0
+  - !!python/object:flight_sim.autonomy_engine.Waypoint
+    action: fly_to
+    altitude: 20000
+    altitude_tolerance: 50.0
+    duration: 0.0
+    heading: null
+    latitude: 0
+    longitude: 50000
+    speed: 50.0
+    tolerance: 100.0
+  wind_conditions: !!python/tuple
+  - 0.0
+  - 0.0
+  - 0.0
+network_data: []
+performance_metrics:
+  cpu_usage: 0.0
+  memory_usage: 0.0
+  real_time_factor: 0.0
+  simulation_rate: 0.0
+quantum_data: []
+telemetry_data:
+- attitude:
+    pitch: !!python/object/apply:numpy.core.multiarray.scalar
+    - &id001 !!python/object/apply:numpy.dtype
+      args:
+      - f8
+      - false
+      - true
+      state: !!python/tuple
+      - 3
+      - <
+      - null
+      - null
+      - null
+      - -1
+      - -1
+      - 0
+    - !!binary |
+      AAAAAAAAAAA=
+    roll: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    yaw: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+  controls:
+    aileron: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    elevator: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    rudder: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    throttle: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      MzMzMzMz0z8=
+  energy:
+    fuel_consumption_rate: 0.0
+    fuel_remaining: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      1PcG//9p+EA=
+    total_energy: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      aJg9zRCcEkI=
+  flight_phase: cruise
+  performance:
+    distance_traveled: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      2JVzSQAA4D8=
+    flight_time: 0.01
+    fuel_consumed: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      FebOggUhLz8=
+  position:
+    altitude: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      mxkH8P+H00A=
+    latitude: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      uO2uijLc0j4=
+    longitude: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+  simulation_time: 0.10371541976928711
+  timestamp: 0.01
+  velocity:
+    airspeed: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      J/f+jwMASUA=
+    ground_speed: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      IZrEcgAASUA=
+    heading: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=

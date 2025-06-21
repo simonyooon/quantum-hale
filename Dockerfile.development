@@ -1,0 +1,61 @@
+# Dockerfile.development
+FROM ubuntu:22.04
+
+# Avoid interactive prompts during package installation
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    # Build tools
+    build-essential cmake ninja-build git curl wget \
+    # Python development
+    python3.10 python3.10-dev python3-pip python3-venv \
+    # Development tools
+    vim nano htop tmux \
+    # Network tools
+    net-tools tcpdump \
+    # Additional utilities
+    tree jq \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install liboqs (post-quantum cryptography library)
+RUN git clone https://github.com/open-quantum-safe/liboqs.git /tmp/liboqs \
+    && cd /tmp/liboqs \
+    && mkdir build && cd build \
+    && cmake -GNinja -DCMAKE_INSTALL_PREFIX=/usr/local .. \
+    && ninja \
+    && ninja install \
+    && ldconfig \
+    && cd / \
+    && rm -rf /tmp/liboqs
+
+# Set up Python environment
+COPY requirements.txt /tmp/requirements.txt
+RUN pip3 install --no-cache-dir -r /tmp/requirements.txt
+
+# Install development tools
+RUN pip3 install --no-cache-dir \
+    pre-commit \
+    ipython \
+    jupyter \
+    pytest-watch \
+    black[jupyter] \
+    flake8-docstrings
+
+# Create workspace
+WORKDIR /workspace
+RUN mkdir -p /workspace/{src,tests,configs,data,models,scripts,docs,deployment}
+
+# Set environment variables
+ENV PYTHONPATH="/workspace/src"
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+
+# Copy entrypoint script
+COPY scripts/docker-entrypoint.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+
+EXPOSE 8080 3000
+
+ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
+CMD ["bash"] 

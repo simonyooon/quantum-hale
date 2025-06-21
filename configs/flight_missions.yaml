@@ -1,0 +1,246 @@
+# Flight missions configuration for Quantum HALE Drone System
+
+missions:
+  # ISR (Intelligence, Surveillance, Reconnaissance) Patrol Mission
+  isr_patrol:
+    name: "ISR Patrol Mission"
+    type: "surveillance"
+    priority: "high"
+    duration: 7200  # seconds (2 hours)
+    
+    waypoints:
+      - id: "WP_001"
+        position: [0, 0, 20000]
+        speed: 50  # m/s
+        altitude_hold: true
+        loiter_time: 0
+        
+      - id: "WP_002"
+        position: [50000, 0, 20000]
+        speed: 50
+        altitude_hold: true
+        loiter_time: 300  # 5 minutes
+        
+      - id: "WP_003"
+        position: [50000, 50000, 20000]
+        speed: 50
+        altitude_hold: true
+        loiter_time: 300
+        
+      - id: "WP_004"
+        position: [0, 50000, 20000]
+        speed: 50
+        altitude_hold: true
+        loiter_time: 300
+        
+      - id: "WP_005"
+        position: [0, 0, 20000]
+        speed: 50
+        altitude_hold: true
+        loiter_time: 0
+    
+    sensors:
+      - type: "EO/IR"
+        mode: "continuous"
+        resolution: "high"
+        
+      - type: "SAR"
+        mode: "intermittent"
+        coverage_area: 100000  # square meters
+        
+      - type: "SIGINT"
+        mode: "passive"
+        frequency_range: [100e6, 6e9]  # Hz
+    
+    communication:
+      primary_link: "quantum_secure"
+      backup_link: "conventional"
+      data_rate: 1000000  # bits per second
+      encryption: "PQC"
+      
+    autonomy:
+      collision_avoidance: true
+      weather_avoidance: true
+      fuel_optimization: true
+      emergency_landing: true
+      
+    constraints:
+      max_wind_speed: 25  # m/s
+      max_turbulence: "moderate"
+      visibility: 5000  # meters
+      ceiling: 15000  # meters
+      
+  # Communication Relay Mission
+  comm_relay:
+    name: "Communication Relay Mission"
+    type: "relay"
+    priority: "medium"
+    duration: 14400  # seconds (4 hours)
+    
+    waypoints:
+      - id: "WP_001"
+        position: [25000, 25000, 25000]
+        speed: 30
+        altitude_hold: true
+        loiter_time: 14400  # 4 hours
+        
+    communication:
+      primary_link: "quantum_secure"
+      backup_link: "conventional"
+      relay_mode: true
+      coverage_radius: 100000  # meters
+      
+    autonomy:
+      station_keeping: true
+      power_management: true
+      thermal_management: true
+      
+  # Emergency Response Mission
+  emergency_response:
+    name: "Emergency Response Mission"
+    type: "response"
+    priority: "critical"
+    duration: 3600  # seconds (1 hour)
+    
+    waypoints:
+      - id: "WP_001"
+        position: [0, 0, 20000]
+        speed: 80  # high speed
+        altitude_hold: true
+        loiter_time: 0
+        
+      - id: "WP_002"
+        position: [100000, 0, 20000]
+        speed: 80
+        altitude_hold: true
+        loiter_time: 0
+        
+      - id: "WP_003"
+        position: [100000, 100000, 20000]
+        speed: 80
+        altitude_hold: true
+        loiter_time: 3600  # 1 hour
+        
+    sensors:
+      - type: "EO/IR"
+        mode: "continuous"
+        resolution: "ultra_high"
+        
+      - type: "SAR"
+        mode: "continuous"
+        coverage_area: 50000
+        
+    communication:
+      primary_link: "quantum_secure"
+      backup_link: "satellite"
+      data_rate: 5000000  # high data rate
+      encryption: "PQC"
+      
+    autonomy:
+      collision_avoidance: true
+      weather_avoidance: false  # mission critical
+      fuel_optimization: false
+      emergency_landing: true
+      
+  # Scientific Research Mission
+  scientific_research:
+    name: "Scientific Research Mission"
+    type: "research"
+    priority: "low"
+    duration: 28800  # seconds (8 hours)
+    
+    waypoints:
+      - id: "WP_001"
+        position: [0, 0, 30000]  # higher altitude
+        speed: 20  # slow speed
+        altitude_hold: true
+        loiter_time: 0
+        
+      - id: "WP_002"
+        position: [20000, 0, 30000]
+        speed: 20
+        altitude_hold: true
+        loiter_time: 3600  # 1 hour
+        
+      - id: "WP_003"
+        position: [20000, 20000, 30000]
+        speed: 20
+        altitude_hold: true
+        loiter_time: 3600
+        
+      - id: "WP_004"
+        position: [0, 20000, 30000]
+        speed: 20
+        altitude_hold: true
+        loiter_time: 3600
+        
+      - id: "WP_005"
+        position: [0, 0, 30000]
+        speed: 20
+        altitude_hold: true
+        loiter_time: 0
+        
+    sensors:
+      - type: "atmospheric"
+        mode: "continuous"
+        parameters: ["temperature", "humidity", "pressure", "wind"]
+        
+      - type: "spectral"
+        mode: "intermittent"
+        wavelength_range: [400e-9, 2500e-9]  # nm
+        
+      - type: "particle"
+        mode: "continuous"
+        particle_types: ["aerosols", "pollutants"]
+        
+    communication:
+      primary_link: "conventional"
+      backup_link: "satellite"
+      data_rate: 500000
+      encryption: "AES-256"
+      
+    autonomy:
+      collision_avoidance: true
+      weather_avoidance: true
+      fuel_optimization: true
+      data_management: true
+      
+    constraints:
+      max_wind_speed: 15  # m/s
+      max_turbulence: "light"
+      visibility: 10000  # meters
+      ceiling: 25000  # meters
+      
+# Mission scheduling
+scheduling:
+  priority_order:
+    - "emergency_response"
+    - "isr_patrol"
+    - "comm_relay"
+    - "scientific_research"
+    
+  resource_allocation:
+    max_concurrent_missions: 3
+    fuel_reserve: 0.2  # 20% fuel reserve
+    maintenance_interval: 86400  # 24 hours
+    
+  weather_conditions:
+    wind_speed_threshold: 30  # m/s
+    visibility_threshold: 1000  # meters
+    precipitation_threshold: "moderate"
+    
+  emergency_procedures:
+    abort_criteria:
+      - "fuel_below_10_percent"
+      - "critical_system_failure"
+      - "severe_weather"
+      - "security_threat"
+      
+    safe_zones:
+      - position: [0, 0, 0]
+        radius: 5000  # meters
+        type: "emergency_landing"
+        
+      - position: [50000, 50000, 0]
+        radius: 5000
+        type: "emergency_landing" 

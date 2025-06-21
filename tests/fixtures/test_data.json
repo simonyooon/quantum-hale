@@ -1,0 +1,229 @@
+{
+  "quantum_handshake_data": {
+    "valid_config": {
+      "key_encapsulation": "Kyber768",
+      "digital_signature": "Dilithium3",
+      "hash_function": "SHA3-256",
+      "security_level": 3
+    },
+    "invalid_config": {
+      "key_encapsulation": "InvalidAlgorithm",
+      "security_level": 6
+    },
+    "handshake_messages": {
+      "init_message": {
+        "public_key": "b64_encoded_public_key_here",
+        "nonce": "b64_encoded_nonce_here",
+        "timestamp": 1640995200
+      },
+      "response_message": {
+        "public_key": "b64_encoded_public_key_here",
+        "ciphertext": "b64_encoded_ciphertext_here",
+        "nonce": "b64_encoded_nonce_here",
+        "timestamp": 1640995201
+      }
+    },
+    "test_keys": {
+      "public_key": "test_public_key_bytes",
+      "private_key": "test_private_key_bytes",
+      "shared_secret": "test_shared_secret_bytes"
+    }
+  },
+  "qkd_simulation_data": {
+    "bb84_states": [
+      {"basis": "Z", "bit": 1, "amplitude": [0, 1]},
+      {"basis": "X", "bit": 0, "amplitude": [1, 0]},
+      {"basis": "Z", "bit": 0, "amplitude": [1, 0]},
+      {"basis": "X", "bit": 1, "amplitude": [0, 1]}
+    ],
+    "measurement_results": [
+      {"bit": 1, "success": true, "basis": "Z"},
+      {"bit": 0, "success": true, "basis": "X"},
+      {"bit": 0, "success": true, "basis": "Z"},
+      {"bit": 1, "success": true, "basis": "X"}
+    ],
+    "sifted_data": {
+      "alice_bits": [1, 0, 0, 1],
+      "bob_bits": [1, 0, 0, 1],
+      "alice_bases": ["Z", "X", "Z", "X"],
+      "bob_bases": ["Z", "X", "Z", "X"]
+    },
+    "error_rates": [0.0, 0.05, 0.1, 0.15, 0.2]
+  },
+  "network_simulation_data": {
+    "topology_configs": {
+      "simple_mesh": {
+        "nodes": [
+          {"id": "node1", "position": [0, 0, 0]},
+          {"id": "node2", "position": [100, 0, 0]},
+          {"id": "node3", "position": [50, 50, 0]}
+        ],
+        "links": [
+          {"source": "node1", "target": "node2", "bandwidth": "1Mbps"},
+          {"source": "node1", "target": "node3", "bandwidth": "1Mbps"},
+          {"source": "node2", "target": "node3", "bandwidth": "1Mbps"}
+        ]
+      },
+      "hale_network": {
+        "nodes": [
+          {"id": "drone1", "position": [0, 0, 20000]},
+          {"id": "drone2", "position": [10000, 0, 20000]},
+          {"id": "drone3", "position": [5000, 10000, 20000]},
+          {"id": "ground_station", "position": [0, 0, 100]}
+        ],
+        "links": [
+          {"source": "drone1", "target": "drone2", "type": "quantum_secure"},
+          {"source": "drone1", "target": "drone3", "type": "quantum_secure"},
+          {"source": "drone1", "target": "ground_station", "type": "backbone"}
+        ]
+      }
+    },
+    "rf_propagation_data": {
+      "distances": [100, 500, 1000, 5000, 10000],
+      "frequencies": [900e6, 2.4e9, 5.8e9],
+      "tx_powers": [20, 30, 40],
+      "antenna_gains": [5, 10, 15]
+    },
+    "jamming_scenarios": {
+      "barrage_jamming": {
+        "jamming_power": 50,
+        "frequency_range": [2.4e9, 2.5e9],
+        "duration": 60
+      },
+      "sweep_jamming": {
+        "jamming_power": 40,
+        "frequency_range": [2.4e9, 2.5e9],
+        "sweep_rate": 100e6
+      },
+      "reactive_jamming": {
+        "jamming_power": 45,
+        "detection_threshold": -70,
+        "response_time": 0.1
+      }
+    }
+  },
+  "flight_simulation_data": {
+    "hale_drone_specs": {
+      "mass": 1000,
+      "wingspan": 50,
+      "cruise_altitude": 20000,
+      "cruise_speed": 50,
+      "endurance": 7200,
+      "payload_capacity": 100
+    },
+    "waypoints": [
+      [0, 0, 20000],
+      [50000, 0, 20000],
+      [50000, 50000, 20000],
+      [0, 50000, 20000],
+      [0, 0, 20000]
+    ],
+    "environmental_conditions": {
+      "wind_speeds": [5, 10, 15, 20, 25],
+      "temperatures": [-40, -20, 0, 20, 40],
+      "pressures": [101325, 80000, 60000, 40000, 20000],
+      "humidity_levels": [0.1, 0.3, 0.5, 0.7, 0.9]
+    },
+    "sensor_data": {
+      "gps": {
+        "latitude": 40.7128,
+        "longitude": -74.0060,
+        "altitude": 20000,
+        "accuracy": 5
+      },
+      "imu": {
+        "roll": 0.1,
+        "pitch": 0.05,
+        "yaw": 45.0,
+        "acceleration": [0.1, 0.05, 9.81]
+      },
+      "airspeed": 50.0,
+      "altitude": 20000
+    }
+  },
+  "mission_data": {
+    "isr_patrol": {
+      "type": "surveillance",
+      "duration": 7200,
+      "waypoints": [
+        [0, 0, 20000],
+        [50000, 0, 20000],
+        [50000, 50000, 20000],
+        [0, 50000, 20000]
+      ],
+      "sensors": ["EO/IR", "SAR", "SIGINT"],
+      "communication": {
+        "primary": "quantum_secure",
+        "backup": "conventional",
+        "data_rate": 1000000
+      }
+    },
+    "emergency_response": {
+      "type": "response",
+      "duration": 3600,
+      "waypoints": [
+        [0, 0, 20000],
+        [100000, 0, 20000],
+        [100000, 100000, 20000]
+      ],
+      "priority": "critical",
+      "communication": {
+        "primary": "quantum_secure",
+        "backup": "satellite",
+        "data_rate": 5000000
+      }
+    }
+  },
+  "performance_benchmarks": {
+    "quantum_handshake": {
+      "target_latency_ms": 500,
+      "target_throughput_keys_per_sec": 10,
+      "memory_usage_mb": 50,
+      "cpu_usage_percent": 20
+    },
+    "qkd_generation": {
+      "target_bits_per_sec": 1000,
+      "target_error_rate": 0.01,
+      "memory_usage_mb": 100,
+      "cpu_usage_percent": 30
+    },
+    "network_simulation": {
+      "target_nodes": 100,
+      "target_simulation_time_sec": 60,
+      "memory_usage_mb": 500,
+      "cpu_usage_percent": 50
+    },
+    "flight_simulation": {
+      "target_update_rate_hz": 100,
+      "target_accuracy_meters": 10,
+      "memory_usage_mb": 200,
+      "cpu_usage_percent": 25
+    }
+  },
+  "error_scenarios": {
+    "quantum_channel_failure": {
+      "type": "channel_degradation",
+      "severity": "high",
+      "recovery_time_sec": 5,
+      "fallback_method": "classical_encryption"
+    },
+    "network_node_failure": {
+      "type": "node_unreachable",
+      "severity": "medium",
+      "recovery_time_sec": 10,
+      "fallback_method": "mesh_rerouting"
+    },
+    "flight_control_failure": {
+      "type": "sensor_malfunction",
+      "severity": "critical",
+      "recovery_time_sec": 2,
+      "fallback_method": "emergency_landing"
+    },
+    "jamming_attack": {
+      "type": "radio_interference",
+      "severity": "high",
+      "recovery_time_sec": 15,
+      "fallback_method": "frequency_hopping"
+    }
+  }
+} 

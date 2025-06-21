@@ -1,0 +1,272 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: quantum-hale-simulation
+  namespace: quantum-hale
+  labels:
+    app: quantum-hale-simulation
+    version: 1.0.0
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: quantum-hale-simulation
+  template:
+    metadata:
+      labels:
+        app: quantum-hale-simulation
+        version: 1.0.0
+    spec:
+      containers:
+      - name: simulation
+        image: quantum-hale:1.0.0
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+          name: web
+        - containerPort: 9090
+          name: metrics
+        env:
+        - name: PYTHONPATH
+          value: "/workspace/src"
+        - name: GAZEBO_MODEL_PATH
+          value: "/workspace/models/gazebo"
+        - name: ROS_DOMAIN_ID
+          value: "42"
+        - name: DISPLAY
+          value: ":0"
+        resources:
+          requests:
+            memory: "4Gi"
+            cpu: "2"
+          limits:
+            memory: "8Gi"
+            cpu: "4"
+        volumeMounts:
+        - name: config-volume
+          mountPath: /workspace/configs
+          readOnly: true
+        - name: data-volume
+          mountPath: /workspace/data
+        - name: models-volume
+          mountPath: /workspace/models
+          readOnly: true
+        - name: logs-volume
+          mountPath: /workspace/logs
+        securityContext:
+          privileged: true
+          allowPrivilegeEscalation: true
+      volumes:
+      - name: config-volume
+        configMap:
+          name: quantum-hale-config
+      - name: data-volume
+        persistentVolumeClaim:
+          claimName: quantum-hale-data
+      - name: models-volume
+        configMap:
+          name: quantum-hale-models
+      - name: logs-volume
+        emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: quantum-hale-simulation-service
+  namespace: quantum-hale
+  labels:
+    app: quantum-hale-simulation
+spec:
+  type: NodePort
+  ports:
+  - port: 8080
+    targetPort: 8080
+    nodePort: 30080
+    name: web
+  - port: 9090
+    targetPort: 9090
+    nodePort: 30090
+    name: metrics
+  selector:
+    app: quantum-hale-simulation
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: network-simulator
+  namespace: quantum-hale
+  labels:
+    app: network-simulator
+    version: 1.0.0
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: network-simulator
+  template:
+    metadata:
+      labels:
+        app: network-simulator
+        version: 1.0.0
+    spec:
+      containers:
+      - name: ns3-simulator
+        image: quantum-hale-network:1.0.0
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8081
+          name: api
+        env:
+        - name: PYTHONPATH
+          value: "/workspace"
+        - name: NS3_PATH
+          value: "/opt/ns-3-dev"
+        resources:
+          requests:
+            memory: "2Gi"
+            cpu: "1"
+          limits:
+            memory: "4Gi"
+            cpu: "2"
+        volumeMounts:
+        - name: network-config
+          mountPath: /workspace/configs
+          readOnly: true
+        - name: network-data
+          mountPath: /workspace/data
+      volumes:
+      - name: network-config
+        configMap:
+          name: network-config
+      - name: network-data
+        persistentVolumeClaim:
+          claimName: network-data
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: quantum-simulator
+  namespace: quantum-hale
+  labels:
+    app: quantum-simulator
+    version: 1.0.0
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: quantum-simulator
+  template:
+    metadata:
+      labels:
+        app: quantum-simulator
+        version: 1.0.0
+    spec:
+      containers:
+      - name: qiskit-simulator
+        image: quantum-hale-quantum:1.0.0
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8082
+          name: api
+        env:
+        - name: PYTHONPATH
+          value: "/workspace"
+        - name: QISKIT_SETTINGS
+          value: "/workspace/configs/qiskit_settings.json"
+        resources:
+          requests:
+            memory: "2Gi"
+            cpu: "1"
+          limits:
+            memory: "4Gi"
+            cpu: "2"
+        volumeMounts:
+        - name: quantum-config
+          mountPath: /workspace/configs
+          readOnly: true
+        - name: quantum-data
+          mountPath: /workspace/data
+      volumes:
+      - name: quantum-config
+        configMap:
+          name: quantum-config
+      - name: quantum-data
+        persistentVolumeClaim:
+          claimName: quantum-data
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: quantum-hale-config
+  namespace: quantum-hale
+data:
+  simulation_params.yaml: |
+    simulation:
+      name: "quantum_hale_kubernetes"
+      duration: 3600
+      timestep: 0.1
+      random_seed: 42
+      output_directory: "/workspace/data/simulation_results"
+  
+  pqc_settings.yaml: |
+    algorithms:
+      key_encapsulation: "Kyber768"
+      digital_signature: "Dilithium3"
+      hash_function: "SHA3-256"
+    security:
+      category: 3
+      session_timeout: 3600
+      key_rotation_interval: 1800
+  
+  network_topology.yaml: |
+    network:
+      id: "HALE_NETWORK_K8S"
+      type: "mesh"
+      protocol: "802.11s"
+  
+  flight_missions.yaml: |
+    missions:
+      isr_patrol:
+        name: "ISR Patrol Mission"
+        type: "surveillance"
+        priority: "high"
+        duration: 7200
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: quantum-hale-data
+  namespace: quantum-hale
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: standard
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: network-data
+  namespace: quantum-hale
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+  storageClassName: standard
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: quantum-data
+  namespace: quantum-hale
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+  storageClassName: standard 

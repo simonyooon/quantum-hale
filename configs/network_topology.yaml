@@ -1,0 +1,108 @@
+# Network topology configuration for Quantum HALE Drone System
+
+network:
+  id: "HALE_NETWORK_001"
+  type: "mesh"
+  protocol: "802.11s"
+  
+  topology:
+    nodes:
+      - id: "DRONE_001"
+        type: "hale_platform"
+        position: [0, 0, 20000]  # x, y, z in meters
+        communication_range: 50000  # meters
+        max_bandwidth: 1000000  # bits per second
+        antenna_gain: 10  # dBi
+        tx_power: 30  # dBm
+        
+      - id: "DRONE_002"
+        type: "hale_platform"
+        position: [10000, 5000, 20000]
+        communication_range: 50000
+        max_bandwidth: 1000000
+        antenna_gain: 10
+        tx_power: 30
+        
+      - id: "DRONE_003"
+        type: "hale_platform"
+        position: [5000, 10000, 20000]
+        communication_range: 50000
+        max_bandwidth: 1000000
+        antenna_gain: 10
+        tx_power: 30
+        
+      - id: "GROUND_001"
+        type: "ground_station"
+        position: [0, 0, 100]
+        communication_range: 200000
+        max_bandwidth: 10000000
+        antenna_gain: 15
+        tx_power: 40
+        
+      - id: "GROUND_002"
+        type: "ground_station"
+        position: [50000, 0, 100]
+        communication_range: 200000
+        max_bandwidth: 10000000
+        antenna_gain: 15
+        tx_power: 40
+    
+    links:
+      - source: "DRONE_001"
+        target: "DRONE_002"
+        type: "mesh"
+        bandwidth: 1000000
+        latency: 10  # milliseconds
+        
+      - source: "DRONE_001"
+        target: "DRONE_003"
+        type: "mesh"
+        bandwidth: 1000000
+        latency: 10
+        
+      - source: "DRONE_002"
+        target: "DRONE_003"
+        type: "mesh"
+        bandwidth: 1000000
+        latency: 10
+        
+      - source: "DRONE_001"
+        target: "GROUND_001"
+        type: "backbone"
+        bandwidth: 10000000
+        latency: 5
+        
+      - source: "DRONE_002"
+        target: "GROUND_002"
+        type: "backbone"
+        bandwidth: 10000000
+        latency: 5
+    
+  routing:
+    algorithm: "AODV"  # Ad-hoc On-Demand Distance Vector
+    max_hops: 5
+    route_timeout: 30  # seconds
+    hello_interval: 2  # seconds
+    
+  security:
+    encryption: "AES-256"
+    authentication: "HMAC-SHA256"
+    key_rotation_interval: 3600  # seconds
+    
+  interference:
+    frequency_band: 2.4  # GHz
+    channel_width: 20  # MHz
+    channels: [1, 6, 11]  # Non-overlapping channels
+    co_channel_interference: true
+    adjacent_channel_interference: true
+    
+  mobility:
+    update_interval: 1  # seconds
+    position_uncertainty: 10  # meters
+    velocity_uncertainty: 1  # m/s
+    
+  monitoring:
+    metrics_collection: true
+    link_quality_threshold: 0.7
+    packet_loss_threshold: 0.05
+    latency_threshold: 100  # milliseconds 

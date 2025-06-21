@@ -1,0 +1,32 @@
+# Post-Quantum Cryptography configuration
+
+algorithms:
+  key_encapsulation:
+    primary: "Kyber768"
+    fallback: "Kyber512"
+    
+  digital_signature:
+    primary: "Dilithium3"
+    fallback: "Dilithium2"
+    
+  hash_function: "SHA3-256"
+
+security:
+  category: 3  # NIST security category
+  session_timeout: 3600  # seconds
+  key_rotation_interval: 1800  # seconds
+  max_handshake_retries: 3
+  handshake_timeout: 5000  # milliseconds
+
+quantum_simulation:
+  qkd_protocol: "BB84"
+  key_length: 256  # bits
+  fidelity_threshold: 0.95
+  error_correction: true
+  privacy_amplification: true
+
+performance:
+  target_handshake_latency: 500  # milliseconds
+  target_throughput: 1000000     # bits per second
+  max_cpu_usage: 80              # percentage
+  max_memory_usage: 512          # MB 

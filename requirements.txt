@@ -1,0 +1,129 @@
+# Core dependencies for Quantum HALE Drone System - Windows Compatible Version
+# Last updated: June 2025
+# Optimized for orchestrator validation and simulation coordination
+
+# Essential Scientific Computing Stack
+numpy>=1.24.0,<2.0.0
+scipy>=1.10.0,<2.0.0
+matplotlib>=3.7.0,<4.0.0
+pandas>=2.0.0,<3.0.0
+
+# Network Simulation & Graph Theory
+networkx>=3.1,<4.0.0
+simpy>=4.0.1,<5.0.0
+
+# Configuration Management
+pyyaml>=6.0,<7.0.0
+python-dotenv>=1.0.0,<2.0.0
+
+# Enhanced Logging & Monitoring
+loguru>=0.7.0,<1.0.0
+prometheus-client>=0.19.0,<1.0.0
+rich>=13.0.0,<14.0.0  # Better console output
+
+# Parallel Processing & Distributed Computing
+joblib>=1.3.0,<2.0.0
+# concurrent-futures is part of Python standard library (Python 3.2+)
+
+# Development & Testing Framework
+pytest>=7.4.0,<8.0.0
+pytest-asyncio>=0.21.0,<1.0.0
+pytest-mock>=3.11.0,<4.0.0
+coverage>=7.3.0,<8.0.0
+
+# Web Interface & API
+fastapi>=0.104.0,<1.0.0
+uvicorn[standard]>=0.24.0,<1.0.0
+websockets>=12.0,<13.0.0  # Real-time data streaming
+
+# Advanced Scientific Computing
+sympy>=1.12,<2.0.0
+scikit-learn>=1.3.0,<2.0.0
+numba>=0.58.0,<1.0.0  # JIT compilation for performance
+
+# Data Processing & Caching
+redis>=5.0.0,<6.0.0
+sqlalchemy>=2.0.0,<3.0.0
+h5py>=3.9.0,<4.0.0  # HDF5 for large dataset storage
+
+# Cryptography (Simplified)
+cryptography>=41.0.0,<42.0.0
+pycryptodome>=3.19.0,<4.0.0
+
+# Geospatial & Time Handling
+pytz>=2023.3
+python-dateutil>=2.8.2,<3.0.0
+
+# Optional Advanced Features (Windows Compatible)
+# Uncomment as needed after core system validation
+
+# Machine Learning Extensions
+# torch>=2.1.0,<3.0.0  # For advanced AI components
+# transformers>=4.35.0,<5.0.0  # NLP for mission planning
+
+# Enhanced Visualization
+# plotly>=5.17.0,<6.0.0  # Interactive plots
+# dash>=2.14.0,<3.0.0  # Web dashboards
+
+# Performance Monitoring
+# psutil>=5.9.0,<6.0.0  # System resource monitoring
+# memory-profiler>=0.61.0,<1.0.0  # Memory usage analysis
+
+# Development Tools
+# black>=23.0.0,<24.0.0  # Code formatting
+# flake8>=6.0.0,<7.0.0  # Linting
+# mypy>=1.6.0,<2.0.0  # Type checking
+
+#=============================================================================
+# QUANTUM & AEROSPACE LIBRARIES - COMMENTED OUT FOR WINDOWS COMPATIBILITY
+#=============================================================================
+# These will be replaced with mock implementations in the simulation
+
+# Quantum Computing Libraries (Complex dependency chains on Windows)
+# qiskit[all]>=0.45.0,<1.0.0
+# cirq>=1.2.0,<2.0.0
+# pennylane>=0.32.0,<1.0.0
+# qiskit-aer>=0.13.0,<1.0.0
+# qiskit-algorithms>=0.2.0,<1.0.0
+
+# Post-Quantum Cryptography (Build issues on Windows)
+# liboqs-python>=0.12.0
+# pqcrypto>=0.2.0
+
+# Aerospace & UAV Libraries (Hardware-dependent)
+# pymavlink>=2.4.37
+# mavsdk>=1.4.9
+# dronekit>=2.9.2
+# mavproxy>=1.8.69
+
+# Advanced Scientific Libraries (Large/Complex builds)
+# astropy>=5.3.0,<6.0.0
+# healpy>=1.16.0,<2.0.0
+# ephem>=4.1.4,<5.0.0
+
+#=============================================================================
+# INSTALLATION NOTES
+#=============================================================================
+# 1. Install in clean virtual environment:
+#    python -m venv quantum_hale_env
+#    quantum_hale_env\Scripts\activate (Windows)
+#    pip install --upgrade pip setuptools wheel
+#
+# 2. Install requirements:
+#    pip install -r requirements.txt
+#
+# 3. Verify installation:
+#    python -c "import numpy, scipy, matplotlib, networkx; print('Core dependencies OK')"
+#
+# 4. Run simulation validation:
+#    python scripts/run_simulations.py --test full --duration 60 --verbose
+#
+#=============================================================================
+# MOCK IMPLEMENTATION STRATEGY
+#=============================================================================
+# The commented-out libraries are replaced with mock implementations that:
+# - Provide realistic simulation behavior
+# - Maintain API compatibility for testing
+# - Enable full orchestrator validation
+# - Support Windows development environments
+# - Allow gradual migration to real libraries as needed
