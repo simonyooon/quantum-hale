@@ -4,6 +4,7 @@ simulation:
   name: "quantum_hale_baseline"
   duration: 3600  # seconds
   timestep: 0.1   # seconds
+  real_time_factor: 0.1  # 1.0 = real-time, 2.0 = 2x speed, 0.5 = half speed, 0.1 = 10x slower
   random_seed: 42
   output_directory: "data/simulation_results"
 
@@ -50,7 +51,7 @@ missions:
     
 threats:
   jamming_sources:
-    - position: [25000, 25000, 0]
-      frequency_range: [2.4e9, 2.5e9]  # Hz
-      power: 50  # dBm
-      active_time: [1800, 3600]  # start, end in seconds 
+    # - position: [25000, 25000, 0]
+    #   frequency_range: [2.4e9, 2.5e9]  # Hz
+    #   power: 50  # dBm
+    #   active_time: [1800, 3600]  # start, end in seconds 

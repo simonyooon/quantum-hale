@@ -1,0 +1,1267 @@
+config:
+  duration: 60
+  num_drones: 2
+  real_time_factor: 0.1
+  timestep: 0.1
+network_data:
+- jamming_status:
+    frequency_coverage: {}
+    jammer_ids: []
+    jammers_active: false
+    num_jammers: 0
+    threat_level: none
+    total_interference_power: 0
+  network_status:
+    connectivity: null
+    links: []
+    nodes:
+    - GROUND_001
+    - DRONE_001
+    num_links: 0
+    num_nodes: 2
+    performance:
+      average_latency: 0.001
+      packet_loss_rate: 0.01
+      throughput: 1000000.0
+    topology_type: mesh
+  rf_conditions:
+    atmospheric_loss_rate: 1.0000000000000001e-07
+    frequency: 2400000000.0
+    humidity: 50
+    model: free_space
+    position: !!python/tuple
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - &id001 !!python/object/apply:numpy.dtype
+        args:
+        - f8
+        - false
+        - true
+        state: !!python/tuple
+        - 3
+        - <
+        - null
+        - null
+        - null
+        - -1
+        - -1
+        - 0
+      - !!binary |
+        CuzGLSYRdT4=
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        AAAAAAAAAAA=
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        mxkH8P+H00A=
+    pressure: 101325
+    temperature: 288.15
+    wavelength: 0.125
+  timestamp: 0.10009162425994873
+- jamming_status:
+    frequency_coverage: {}
+    jammer_ids: []
+    jammers_active: false
+    num_jammers: 0
+    threat_level: none
+    total_interference_power: 0
+  network_status:
+    connectivity: null
+    links: []
+    nodes:
+    - GROUND_001
+    - DRONE_001
+    num_links: 0
+    num_nodes: 2
+    performance:
+      average_latency: 0.001
+      packet_loss_rate: 0.01
+      throughput: 1000000.0
+    topology_type: mesh
+  rf_conditions:
+    atmospheric_loss_rate: 1.0000000000000001e-07
+    frequency: 2400000000.0
+    humidity: 50
+    model: free_space
+    position: !!python/tuple
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        QpzFeSYRhT4=
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        AAAAAAAAAAA=
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        CYAV0P+H00A=
+    pressure: 101325
+    temperature: 288.15
+    wavelength: 0.125
+  timestamp: 0.1001920223236084
+- jamming_status:
+    frequency_coverage: {}
+    jammer_ids: []
+    jammers_active: false
+    num_jammers: 0
+    threat_level: none
+    total_interference_power: 0
+  network_status:
+    connectivity: null
+    links: []
+    nodes:
+    - GROUND_001
+    - DRONE_001
+    num_links: 0
+    num_nodes: 2
+    performance:
+      average_latency: 0.001
+      packet_loss_rate: 0.01
+      throughput: 1000000.0
+    topology_type: mesh
+  rf_conditions:
+    atmospheric_loss_rate: 1.0000000000000001e-07
+    frequency: 2400000000.0
+    humidity: 50
+    model: free_space
+    position: !!python/tuple
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        T2KfKLqZjz4=
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        AAAAAAAAAAA=
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        g2YroP+H00A=
+    pressure: 101325
+    temperature: 288.15
+    wavelength: 0.125
+  timestamp: 0.20017268657684328
+- jamming_status:
+    frequency_coverage: {}
+    jammer_ids: []
+    jammers_active: false
+    num_jammers: 0
+    threat_level: none
+    total_interference_power: 0
+  network_status:
+    connectivity: null
+    links: []
+    nodes:
+    - GROUND_001
+    - DRONE_001
+    num_links: 0
+    num_nodes: 2
+    performance:
+      average_latency: 0.001
+      packet_loss_rate: 0.01
+      throughput: 1000000.0
+    topology_type: mesh
+  rf_conditions:
+    atmospheric_loss_rate: 1.0000000000000001e-07
+    frequency: 2400000000.0
+    humidity: 50
+    model: free_space
+    position: !!python/tuple
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        8qCyEScRlT4=
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        AAAAAAAAAAA=
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        QABJYP+H00A=
+    pressure: 101325
+    temperature: 288.15
+    wavelength: 0.125
+  timestamp: 0.20027573108673097
+- jamming_status:
+    frequency_coverage: {}
+    jammer_ids: []
+    jammers_active: false
+    num_jammers: 0
+    threat_level: none
+    total_interference_power: 0
+  network_status:
+    connectivity: null
+    links: []
+    nodes:
+    - GROUND_001
+    - DRONE_001
+    num_links: 0
+    num_nodes: 2
+    performance:
+      average_latency: 0.001
+      packet_loss_rate: 0.01
+      throughput: 1000000.0
+    topology_type: mesh
+  rf_conditions:
+    atmospheric_loss_rate: 1.0000000000000001e-07
+    frequency: 2400000000.0
+    humidity: 50
+    model: free_space
+    position: !!python/tuple
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        hp8DNXFVmj4=
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        AAAAAAAAAAA=
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        d4BuEP+H00A=
+    pressure: 101325
+    temperature: 288.15
+    wavelength: 0.125
+  timestamp: 0.3002783298492432
+- jamming_status:
+    frequency_coverage: {}
+    jammer_ids: []
+    jammers_active: false
+    num_jammers: 0
+    threat_level: none
+    total_interference_power: 0
+  network_status:
+    connectivity: null
+    links: []
+    nodes:
+    - GROUND_001
+    - DRONE_001
+    num_links: 0
+    num_nodes: 2
+    performance:
+      average_latency: 0.001
+      packet_loss_rate: 0.01
+      throughput: 1000000.0
+    topology_type: mesh
+  rf_conditions:
+    atmospheric_loss_rate: 1.0000000000000001e-07
+    frequency: 2400000000.0
+    humidity: 50
+    model: free_space
+    position: !!python/tuple
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        LHQ4fruZnz4=
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        AAAAAAAAAAA=
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        YRqcsP6H00A=
+    pressure: 101325
+    temperature: 288.15
+    wavelength: 0.125
+  timestamp: 0.3002783298492432
+- jamming_status:
+    frequency_coverage: {}
+    jammer_ids: []
+    jammers_active: false
+    num_jammers: 0
+    threat_level: none
+    total_interference_power: 0
+  network_status:
+    connectivity: null
+    links: []
+    nodes:
+    - GROUND_001
+    - DRONE_001
+    num_links: 0
+    num_nodes: 2
+    performance:
+      average_latency: 0.001
+      packet_loss_rate: 0.01
+      throughput: 1000000.0
+    topology_type: mesh
+  rf_conditions:
+    atmospheric_loss_rate: 1.0000000000000001e-07
+    frequency: 2400000000.0
+    humidity: 50
+    model: free_space
+    position: !!python/tuple
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        xlWi9gJvoj4=
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        AAAAAAAAAAA=
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        NQHSQP6H00A=
+    pressure: 101325
+    temperature: 288.15
+    wavelength: 0.125
+  timestamp: 0.4004240989685059
+- jamming_status:
+    frequency_coverage: {}
+    jammer_ids: []
+    jammers_active: false
+    num_jammers: 0
+    threat_level: none
+    total_interference_power: 0
+  network_status:
+    connectivity: null
+    links: []
+    nodes:
+    - GROUND_001
+    - DRONE_001
+    num_links: 0
+    num_nodes: 2
+    performance:
+      average_latency: 0.001
+      packet_loss_rate: 0.01
+      throughput: 1000000.0
+    topology_type: mesh
+  rf_conditions:
+    atmospheric_loss_rate: 1.0000000000000001e-07
+    frequency: 2400000000.0
+    humidity: 50
+    model: free_space
+    position: !!python/tuple
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        5MsMQSgRpT4=
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        AAAAAAAAAAA=
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        K2gQwf2H00A=
+    pressure: 101325
+    temperature: 288.15
+    wavelength: 0.125
+  timestamp: 0.4004240989685059
+- jamming_status:
+    frequency_coverage: {}
+    jammer_ids: []
+    jammers_active: false
+    num_jammers: 0
+    threat_level: none
+    total_interference_power: 0
+  network_status:
+    connectivity: null
+    links: []
+    nodes:
+    - GROUND_001
+    - DRONE_001
+    num_links: 0
+    num_nodes: 2
+    performance:
+      average_latency: 0.001
+      packet_loss_rate: 0.01
+      throughput: 1000000.0
+    topology_type: mesh
+  rf_conditions:
+    atmospheric_loss_rate: 1.0000000000000001e-07
+    frequency: 2400000000.0
+    humidity: 50
+    model: free_space
+    position: !!python/tuple
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        SyhTnk2zpz4=
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        AAAAAAAAAAA=
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        fYJXMf2H00A=
+    pressure: 101325
+    temperature: 288.15
+    wavelength: 0.125
+  timestamp: 0.5005475521087647
+- jamming_status:
+    frequency_coverage: {}
+    jammer_ids: []
+    jammers_active: false
+    num_jammers: 0
+    threat_level: none
+    total_interference_power: 0
+  network_status:
+    connectivity: null
+    links: []
+    nodes:
+    - GROUND_001
+    - DRONE_001
+    num_links: 0
+    num_nodes: 2
+    performance:
+      average_latency: 0.001
+      packet_loss_rate: 0.01
+      throughput: 1000000.0
+    topology_type: mesh
+  rf_conditions:
+    atmospheric_loss_rate: 1.0000000000000001e-07
+    frequency: 2400000000.0
+    humidity: 50
+    model: free_space
+    position: !!python/tuple
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        r9lrDnNVqj4=
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        AAAAAAAAAAA=
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - *id001
+      - !!binary |
+        ZYOnkfyH00A=
+    pressure: 101325
+    temperature: 288.15
+    wavelength: 0.125
+  timestamp: 0.5005475521087647
+performance_metrics:
+  cpu_usage: 0.0
+  memory_usage: 0.0
+  real_time_factor: 0.1
+  simulation_rate: 0.9987669907860065
+  start_time: 1750531208.3175232
+quantum_data:
+- handshake_status:
+    mock: true
+  timestamp: 0.10009162425994873
+- handshake_status:
+    mock: true
+  timestamp: 0.1001920223236084
+- handshake_status:
+    mock: true
+  timestamp: 0.20017268657684328
+- handshake_status:
+    mock: true
+  timestamp: 0.20027573108673097
+- handshake_status:
+    mock: true
+  timestamp: 0.3002783298492432
+- handshake_status:
+    mock: true
+  timestamp: 0.3002783298492432
+- handshake_status:
+    mock: true
+  timestamp: 0.4004240989685059
+- handshake_status:
+    mock: true
+  timestamp: 0.4004240989685059
+- handshake_status:
+    mock: true
+  timestamp: 0.5005475521087647
+- handshake_status:
+    mock: true
+  timestamp: 0.5005475521087647
+telemetry_data:
+- attitude:
+    pitch: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    roll: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    yaw: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+  controls:
+    aileron: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    elevator: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    rudder: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+    throttle: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      mpmZmZmZ2T8=
+  energy:
+    fuel_consumption_rate: 0.0
+    fuel_remaining: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      G/Wz/v9p+EA=
+    total_energy: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      qmadzRCcEkI=
+  flight_phase: cruise
+  performance:
+    distance_traveled: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      mfBycwAA4D8=
+    flight_time: 0.01
+    fuel_consumed: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      Y5k0V67AND8=
+  position:
+    altitude: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      mxkH8P+H00A=
+    latitude: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      ty4wvDLc0j4=
+    longitude: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+  simulation_time: 0.10009162425994873
+  timestamp: 0.01
+  velocity:
+    airspeed: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      yOyd0QMASUA=
+    ground_speed: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      75djtAAASUA=
+    heading: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+- attitude:
+    pitch: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      1BJdJT9hOT4=
+    roll: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      EH1AXfhl7T4=
+    yaw: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      CkvABJWj4T4=
+  controls:
+    aileron: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      +MFjGtylPEA=
+    elevator: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      DThpU2W7iD8=
+    rudder: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      LkGi3FAwMUA=
+    throttle: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      moE1SSSZ2T8=
+  energy:
+    fuel_consumption_rate: 0.0
+    fuel_remaining: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      JfBn/f9p+EA=
+    total_energy: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      9mGixhCcEkI=
+  flight_phase: cruise
+  performance:
+    distance_traveled: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      1G4qrQAA8D8=
+    flight_time: 0.02
+    fuel_consumed: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      vucL3X7ARD8=
+  position:
+    altitude: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      CYAV0P+H00A=
+    latitude: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      2+w4ADPc4j4=
+    longitude: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+  simulation_time: 0.1001920223236084
+  timestamp: 0.02
+  velocity:
+    airspeed: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      97V/3Q0ASUA=
+    ground_speed: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      ZwLBaAEASUA=
+    heading: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+- attitude:
+    pitch: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      OfCSfvMqWj4=
+    roll: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      rIZqVIAMBj8=
+    yaw: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      Agizy2Z1+j4=
+  controls:
+    aileron: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      +MFjGtylPEA=
+    elevator: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      t4owNGxEmj8=
+    rudder: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      LkGi3FAwMUA=
+    throttle: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      7KT+qO+X2T8=
+  energy:
+    fuel_consumption_rate: 0.0
+    fuel_remaining: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      zfob/P9p+EA=
+    total_energy: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      lH+OvxCcEkI=
+  flight_phase: cruise
+  performance:
+    distance_traveled: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      IoZNWgEA+D8=
+    flight_time: 0.03
+    fuel_consumed: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      vSvomykgTz8=
+  position:
+    altitude: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      g2YroP+H00A=
+    latitude: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      hS1c5kxK7D4=
+    longitude: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+  simulation_time: 0.20017268657684328
+  timestamp: 0.03
+  velocity:
+    airspeed: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      M1lXIx4ASUA=
+    ground_speed: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      1agNHQIASUA=
+    heading: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+- attitude:
+    pitch: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      c2V565hTcD4=
+    roll: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      mJL6QIgMFj8=
+    yaw: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      tXz5TXB1Cj8=
+  controls:
+    aileron: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      +MFjGtylPEA=
+    elevator: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      H7If6mrSoj8=
+    rudder: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      LkGi3FAwMUA=
+    throttle: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      w3RRwvuV2T8=
+  energy:
+    fuel_consumption_rate: 0.0
+    fuel_remaining: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      wh7Q+v9p+EA=
+    total_energy: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      Nk1huBCcEkI=
+  flight_phase: cruise
+  performance:
+    distance_traveled: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      xP6MIAEAAEA=
+    flight_time: 0.04
+    fuel_consumed: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      v9DD+YS/VD8=
+  position:
+    altitude: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      QABJYP+H00A=
+    latitude: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      EMQ7iDPc8j4=
+    longitude: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+  simulation_time: 0.20027573108673097
+  timestamp: 0.04
+  velocity:
+    airspeed: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      hy/SojQASUA=
+    ground_speed: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      HfU+0QIASUA=
+    heading: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+- attitude:
+    pitch: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      hK0r5NJRgD4=
+    roll: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      nyemCc9fIj8=
+    yaw: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      iy+UC5IMFj8=
+  controls:
+    aileron: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      +MFjGtylPEA=
+    elevator: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      CdU7YrpxqT8=
+    rudder: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      LkGi3FAwMUA=
+    throttle: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      SAQZn0iT2T8=
+  energy:
+    fuel_consumption_rate: 0.0
+    fuel_remaining: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      smWE+f9p+EA=
+    total_energy: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      jFgasRCcEkI=
+  flight_phase: cruise
+  performance:
+    distance_traveled: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      oNjBsAEABEA=
+    flight_time: 0.05
+    fuel_consumed: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      jUSfOWnuWT8=
+  position:
+    altitude: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      d4BuEP+H00A=
+    latitude: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      rVY+v0CT9z4=
+    longitude: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+  simulation_time: 0.3002783298492432
+  timestamp: 0.05
+  velocity:
+    airspeed: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      3+2YW1EASUA=
+    ground_speed: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      nVFKhQMASUA=
+    heading: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+- attitude:
+    pitch: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      nQnW9S1hij4=
+    roll: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      4dw1IcWPKz8=
+    yaw: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      VFEgR3aJID8=
+  controls:
+    aileron: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      +MFjGtylPEA=
+    elevator: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      W7LBoIStnT8=
+    rudder: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      LkGi3FAwMUA=
+    throttle: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      uPnOSdaP2T8=
+  energy:
+    fuel_consumption_rate: 0.0
+    fuel_remaining: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      S9k4+P9p+EA=
+    total_energy: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      Ty+5qRCcEkI=
+  flight_phase: cruise
+  performance:
+    distance_traveled: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      TI29XQIACEA=
+    flight_time: 0.060000000000000005
+    fuel_consumed: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      qq5J15ocXz8=
+  position:
+    altitude: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      YRqcsP6H00A=
+    latitude: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AKgsGE5K/D4=
+    longitude: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+  simulation_time: 0.3002783298492432
+  timestamp: 0.060000000000000005
+  velocity:
+    airspeed: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      kaVPTXQASUA=
+    ground_speed: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      MCklOQQASUA=
+    heading: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+- attitude:
+    pitch: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      iuUBSVehkj4=
+    roll: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      l6xc0xVLMz8=
+    yaw: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      tmii/eYmJz8=
+  controls:
+    aileron: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      +MFjGtylPEA=
+    elevator: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      Yx98sB2YiT8=
+    rudder: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      LkGi3FAwMUA=
+    throttle: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      9n17zaSL2T8=
+  energy:
+    fuel_consumption_rate: 0.0
+    fuel_remaining: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      OYPt9v9p+EA=
+    total_energy: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      NV89ohCcEkI=
+  flight_phase: cruise
+  performance:
+    distance_traveled: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      DKh2JwMADEA=
+    flight_time: 0.07
+    fuel_consumed: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      LlRdj/kkYj8=
+  position:
+    altitude: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      NQHSQP6H00A=
+    latitude: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      Ssl9ya2AAD8=
+    longitude: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+  simulation_time: 0.4004240989685059
+  timestamp: 0.07
+  velocity:
+    airspeed: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      98SVd50ASUA=
+    ground_speed: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      L+fE7AQASUA=
+    heading: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+- attitude:
+    pitch: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      DARNoIbCmT4=
+    roll: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      uOFPZIS5OT8=
+    yaw: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      EULG3p7eLj8=
+  controls:
+    aileron: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      +MFjGtylPEA=
+    elevator: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      ejkHOAhVqj8=
+    rudder: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      LkGi3FAwMUA=
+    throttle: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      Cyq1NbSG2T8=
+  energy:
+    fuel_consumption_rate: 0.0
+    fuel_remaining: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      KW2i9f9p+EA=
+    total_energy: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      83WmmhCcEkI=
+  flight_phase: cruise
+  performance:
+    distance_traveled: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      bAHxBgIAEEA=
+    flight_time: 0.08
+    fuel_consumed: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      6rAcryW7ZD8=
+  position:
+    altitude: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      K2gQwf2H00A=
+    latitude: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      F/nOlzTcAj8=
+    longitude: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+  simulation_time: 0.4004240989685059
+  timestamp: 0.08
+  velocity:
+    airspeed: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      HRgG2swASUA=
+    ground_speed: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      dPceoAUASUA=
+    heading: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+- attitude:
+    pitch: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      igqIrpzuoT4=
+    roll: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      oxsM6ZiJQD8=
+    yaw: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      KyGoF1HYMz8=
+  controls:
+    aileron: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      +MFjGtylPEA=
+    elevator: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      Hcduvxsvtz8=
+    rudder: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      LkGi3FAwMUA=
+    throttle: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      SPKgjgSB2T8=
+  energy:
+    fuel_consumption_rate: 0.0
+    fuel_remaining: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      x6BX9P9p+EA=
+    total_energy: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      PwH0khCcEkI=
+  flight_phase: cruise
+  performance:
+    distance_traveled: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      NmN5iAIAEkA=
+    flight_time: 0.09
+    fuel_consumed: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      m+w7c75QZz8=
+  position:
+    altitude: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      fYJXMf2H00A=
+    latitude: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      91ECd7s3BT8=
+    longitude: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+  simulation_time: 0.5005475521087647
+  timestamp: 0.09
+  velocity:
+    airspeed: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      gsk2dAIBSUA=
+    ground_speed: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      XsYoUwYASUA=
+    heading: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+- attitude:
+    pitch: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      ohsYAMWxqD4=
+    roll: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      OTdgERGsRD8=
+    yaw: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      rKim4XrOOD8=
+  controls:
+    aileron: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      +MFjGtylPEA=
+    elevator: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      GzbN3PSnuj8=
+    rudder: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      LkGi3FAwMUA=
+    throttle: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      Hw/y5JV62T8=
+  energy:
+    fuel_consumption_rate: 0.0
+    fuel_remaining: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      vicN8/9p+EA=
+    total_energy: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      0Y4lixCcEkI=
+  flight_phase: cruise
+  performance:
+    distance_traveled: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      MjVNGAMAFEA=
+    flight_time: 0.09999999999999999
+    fuel_consumed: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      jwZXhbDlaT8=
+  position:
+    altitude: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      ZYOnkfyH00A=
+    latitude: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      MEMPZ0KTBz8=
+    longitude: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=
+  simulation_time: 0.5005475521087647
+  timestamp: 0.09999999999999999
+  velocity:
+    airspeed: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      5WK5RT4BSUA=
+    ground_speed: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      0cDXBQcASUA=
+    heading: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      AAAAAAAAAAA=

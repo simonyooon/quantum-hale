@@ -418,21 +418,32 @@ class AutonomyEngine:
     def _check_emergency_conditions(self, current_state: Dict[str, Any], 
                                   environment_data: Dict[str, Any]) -> bool:
         """Check for emergency conditions requiring immediate action"""
+        emergency_reasons = []
+        
         # Check fuel level
-        if current_state['energy']['fuel_remaining'] < 0.1:  # Less than 10%
-            return True
+        fuel_remaining = current_state.get('energy', {}).get('fuel_remaining', 100.0)
+        if fuel_remaining < 0.1:  # Less than 10%
+            emergency_reasons.append(f"Low fuel: {fuel_remaining:.2f}% remaining")
             
         # Check flight envelope violations
         warnings = current_state.get('warnings', {})
-        if warnings.get('stall_warning', False) or warnings.get('overspeed_warning', False):
-            return True
+        if warnings.get('stall_warning', False):
+            emergency_reasons.append("Stall warning detected")
+        if warnings.get('overspeed_warning', False):
+            emergency_reasons.append("Overspeed warning detected")
             
         # Check weather conditions
-        if environment_data.get('wind_speed', 0) > 25.0:  # High winds
-            return True
+        wind_speed = environment_data.get('wind_speed', 0)
+        if wind_speed > 25.0:  # High winds
+            emergency_reasons.append(f"High winds: {wind_speed:.1f} m/s")
             
         # Check for threats
         if environment_data.get('threats', {}).get('jamming_active', False):
+            emergency_reasons.append("Jamming threat detected")
+            
+        # Store emergency reasons for detailed reporting
+        if emergency_reasons:
+            self.emergency_reasons = emergency_reasons
             return True
             
         return False
@@ -441,7 +452,14 @@ class AutonomyEngine:
                          environment_data: Dict[str, Any]):
         """Handle emergency conditions"""
         self.mission_state = MissionState.ABORTING
-        logging.warning("Emergency condition detected - aborting mission")
+        
+        # Log detailed emergency information
+        if hasattr(self, 'emergency_reasons'):
+            for reason in self.emergency_reasons:
+                logging.warning(f"EMERGENCY: {reason}")
+            logging.warning(f"Mission aborting due to {len(self.emergency_reasons)} emergency condition(s)")
+        else:
+            logging.warning("Emergency condition detected - aborting mission (details unavailable)")
         
         # Find nearest safe landing site
         if self.current_mission and self.current_mission.emergency_landing_sites:
@@ -462,7 +480,10 @@ class AutonomyEngine:
             )
             
             self.navigation_controller.set_waypoints([emergency_wp])
-            
+            logging.info(f"Emergency landing waypoint set: {nearest_site}")
+        else:
+            logging.warning("No emergency landing sites available")
+        
     def _get_emergency_commands(self, current_state: Dict[str, Any]) -> Dict[str, float]:
         """Get control commands for emergency situations"""
         # Conservative emergency commands
