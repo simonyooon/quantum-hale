@@ -126,10 +126,11 @@ def run_full_simulation(config: dict):
         try:
             # Wait for the simulation to complete
             while orchestrator.get_simulation_status()['state'] == 'running':
-                time.sleep(1)
+                time.sleep(0.5)  # Check more frequently
                 # Here you could add some progress reporting
                 sim_time = orchestrator.get_simulation_status().get('simulation_time', 0)
-                print(f"\rSimulation time: {sim_time:.2f}s / {sim_config.duration}s", end="")
+                progress = (sim_time / sim_config.duration) * 100
+                print(f"\rSimulation Progress: {progress:.1f}% ({sim_time:.1f}s/{sim_config.duration:.1f}s)", end="", flush=True)
 
         except KeyboardInterrupt:
             print("\nSimulation interrupted by user.")

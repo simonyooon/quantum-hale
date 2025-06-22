@@ -4,7 +4,7 @@ simulation:
   name: "quantum_hale_baseline"
   duration: 3600  # seconds
   timestep: 0.1   # seconds
-  real_time_factor: 0.1  # 1.0 = real-time, 2.0 = 2x speed, 0.5 = half speed, 0.1 = 10x slower
+  real_time_factor: 1.0  # 1.0 = real-time, 2.0 = 2x speed, 0.5 = half speed
   random_seed: 42
   output_directory: "data/simulation_results"
 

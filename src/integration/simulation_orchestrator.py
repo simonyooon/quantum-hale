@@ -525,7 +525,7 @@ class SimulationOrchestrator:
         """Enhanced main simulation loop with your progress reporting"""
         last_time = time.time()
         last_progress_report = 0.0
-        progress_interval = 1.0  # Report progress every 1 second
+        progress_interval = 0.5  # Report progress every 0.5 seconds (changed from 1.0)
         
         logging.info(f"Starting simulation loop - Duration: {self.config.duration}s, Timestep: {self.config.timestep}s")
         logging.info(f"Real-time factor: {self.config.real_time_factor}, Progress interval: {progress_interval}s")
@@ -590,6 +590,14 @@ class SimulationOrchestrator:
         network_status = self._get_network_status()
         quantum_status = self._get_quantum_status()
         
+        # Use print for better visibility
+        print(f"\n=== SIMULATION PROGRESS: {progress_percent:.1f}% ({self.simulation_time:.1f}s/{self.config.duration:.1f}s) ===")
+        print(f"Flight: {flight_status}")
+        print(f"Network: {network_status}")
+        print(f"Quantum: {quantum_status}")
+        print("=" * 60)
+        
+        # Also log for file output
         logging.info(f"=== SIMULATION PROGRESS: {progress_percent:.1f}% ({self.simulation_time:.1f}s/{self.config.duration:.1f}s) ===")
         logging.info(f"Flight: {flight_status}")
         logging.info(f"Network: {network_status}")
