@@ -8,14 +8,24 @@ This module provides network simulation capabilities including:
 - Mesh network routing
 """
 
-from .ns3_wrapper import NS3Wrapper
-from .rf_propagation import RFPropagation
+from .ns3_wrapper import NS3Wrapper, NodeConfig, LinkConfig, JammingConfig, NetworkType, RoutingProtocol
+from .rf_propagation import EnhancedRFPropagation, PropagationModel, FrequencyBand, AtmosphericParams
 from .jamming_models import JammingModels
-from .mesh_routing import MeshRouting
+from .mesh_routing import EnhancedMeshRouting, RoutingAlgorithm, CoordinationProtocol
 
 __all__ = [
     "NS3Wrapper",
-    "RFPropagation",
+    "NodeConfig",
+    "LinkConfig", 
+    "JammingConfig",
+    "NetworkType",
+    "RoutingProtocol",
+    "EnhancedRFPropagation",
+    "PropagationModel",
+    "FrequencyBand",
+    "AtmosphericParams",
     "JammingModels",
-    "MeshRouting"
+    "EnhancedMeshRouting",
+    "RoutingAlgorithm",
+    "CoordinationProtocol"
 ] 
