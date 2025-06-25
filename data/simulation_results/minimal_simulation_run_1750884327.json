@@ -1,0 +1,13 @@
+config:
+  duration: 2
+  num_drones: 2
+  real_time_factor: 1.0
+  timestep: 0.1
+error: 'Data serialization failed: dictionary update sequence element #0 has length
+  1; 2 is required'
+performance_metrics:
+  cpu_usage: 0.0
+  memory_usage: 0.0
+  real_time_factor: 0.9994749788038964
+  simulation_rate: 124.79333531686999
+  start_time: 1750884325.0969422

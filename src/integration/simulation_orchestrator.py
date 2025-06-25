@@ -18,6 +18,8 @@ from dataclasses import dataclass
 from enum import Enum
 import numpy as np
 import yaml
+from pathlib import Path
+import json
 
 # Visualization imports
 try:
@@ -453,8 +455,8 @@ class SimulationOrchestrator:
                     if hasattr(self.mesh_router, 'add_node'):
                         self.mesh_router.add_node(station_id, (lat, lon, 100.0))
             
-            # Setup jamming sources
-            if self.config.jamming_sources:
+            # Setup jamming sources only if they are actually configured
+            if self.config.jamming_sources and len(self.config.jamming_sources) > 0:
                 for jammer in self.config.jamming_sources:
                     if hasattr(self.jamming_sim, 'add_jamming_source'):
                         jamming_source = JammingSource(
@@ -465,6 +467,10 @@ class SimulationOrchestrator:
                             jamming_type=JammingType.CONTINUOUS
                         )
                         self.jamming_sim.add_jamming_source(jamming_source)
+            else:
+                # Clear any existing jammers to ensure clean state
+                if hasattr(self.jamming_sim, 'clear_all_jammers'):
+                    self.jamming_sim.clear_all_jammers()
                         
         except Exception as e:
             logging.error(f"Failed to initialize network: {e}")
@@ -632,7 +638,11 @@ class SimulationOrchestrator:
         try:
             if hasattr(self.network_sim, 'get_network_status'):
                 status = self.network_sim.get_network_status()
-                return f"Nodes:{status['num_nodes']}, Links:{status['num_links']}, Topology:{status['topology_type']}"
+                # Handle both real and mock components
+                if isinstance(status, dict):
+                    return f"Nodes:{status.get('num_nodes', 0)}, Links:{status.get('num_links', 0)}, Topology:{status.get('topology_type', 'unknown')}"
+                else:
+                    return "Mock network system active"
             return "Mock network system active"
         except Exception as e:
             return f"Network error: {e}"
@@ -799,11 +809,20 @@ class SimulationOrchestrator:
     def _get_environment_data(self) -> Dict[str, Any]:
         """Get environmental data for autonomy engine"""
         try:
+            # Check jamming status safely
+            jamming_active = False
+            if self.jamming_sim and hasattr(self.jamming_sim, 'is_jamming_active'):
+                try:
+                    jamming_active = self.jamming_sim.is_jamming_active()
+                except Exception as e:
+                    logging.debug(f"Error checking jamming status: {e}")
+                    jamming_active = False
+            
             return {
                 'wind_speed': np.sqrt(sum(x**2 for x in self.config.wind_conditions)),
                 'wind_direction': np.arctan2(self.config.wind_conditions[1], self.config.wind_conditions[0]),
                 'threats': {
-                    'jamming_active': self.jamming_sim.is_jamming_active() if self.jamming_sim and hasattr(self.jamming_sim, 'is_jamming_active') else False
+                    'jamming_active': jamming_active
                 }
             }
         except Exception as e:
@@ -891,27 +910,144 @@ class SimulationOrchestrator:
     def save_simulation_data(self, filename: str = None):
         """Save collected simulation data"""
         if not filename:
-            filename = f"simulation_data_{int(time.time())}.yaml"
+            # Create output directory if it doesn't exist
+            output_dir = Path(self.config.output_directory)
+            output_dir.mkdir(parents=True, exist_ok=True)
+            filename = output_dir / f"simulation_data_{int(time.time())}.json"
+        else:
+            # Ensure the directory for the specified filename exists
+            file_path = Path(filename)
+            file_path.parent.mkdir(parents=True, exist_ok=True)
             
+        # Prepare data with proper serialization
         data = {
             'config': {
-                'duration': self.config.duration,
-                'timestep': self.config.timestep,
-                'real_time_factor': self.config.real_time_factor,
-                'num_drones': self.config.num_drones
+                'duration': float(self.config.duration),
+                'timestep': float(self.config.timestep),
+                'real_time_factor': float(self.config.real_time_factor),
+                'num_drones': int(self.config.num_drones)
             },
-            'telemetry_data': self.telemetry_data,
-            'network_data': self.network_data,
-            'quantum_data': self.quantum_data,
-            'performance_metrics': self.performance_metrics
+            'performance_metrics': {
+                'start_time': float(self.performance_metrics['start_time']),
+                'real_time_factor': float(self.performance_metrics['real_time_factor']),
+                'cpu_usage': float(self.performance_metrics['cpu_usage']),
+                'memory_usage': float(self.performance_metrics['memory_usage']),
+                'simulation_rate': float(self.performance_metrics['simulation_rate'])
+            }
         }
         
+        # Safely add telemetry data
+        if self.telemetry_data:
+            try:
+                # Convert telemetry data to serializable format
+                serializable_telemetry = []
+                for i, entry in enumerate(self.telemetry_data):
+                    try:
+                        if isinstance(entry, dict):
+                            # Convert numpy types to native Python types
+                            clean_entry = {}
+                            for key, value in entry.items():
+                                if hasattr(value, 'item'):  # numpy scalar
+                                    clean_entry[key] = float(value.item())
+                                elif isinstance(value, (list, tuple)):
+                                    clean_entry[key] = [float(x) if hasattr(x, 'item') else float(x) for x in value]
+                                elif isinstance(value, (int, float, str, bool)):
+                                    clean_entry[key] = value
+                                else:
+                                    clean_entry[key] = str(value)
+                            serializable_telemetry.append(clean_entry)
+                        else:
+                            serializable_telemetry.append(str(entry))
+                    except Exception as e:
+                        logging.warning(f"Could not serialize telemetry entry {i}: {e}")
+                        serializable_telemetry.append(f"ERROR: {str(e)}")
+                data['telemetry_data'] = serializable_telemetry
+            except Exception as e:
+                logging.warning(f"Could not serialize telemetry data: {e}")
+                data['telemetry_data'] = []
+        
+        # Safely add network data
+        if self.network_data:
+            try:
+                # Convert network data to serializable format
+                serializable_network = []
+                for i, entry in enumerate(self.network_data):
+                    try:
+                        if isinstance(entry, dict):
+                            clean_entry = {}
+                            for key, value in entry.items():
+                                if hasattr(value, 'item'):  # numpy scalar
+                                    clean_entry[key] = float(value.item())
+                                elif isinstance(value, (list, tuple)):
+                                    clean_entry[key] = [float(x) if hasattr(x, 'item') else float(x) for x in value]
+                                elif isinstance(value, (int, float, str, bool)):
+                                    clean_entry[key] = value
+                                else:
+                                    clean_entry[key] = str(value)
+                            serializable_network.append(clean_entry)
+                        else:
+                            serializable_network.append(str(entry))
+                    except Exception as e:
+                        logging.warning(f"Could not serialize network entry {i}: {e}")
+                        serializable_network.append(f"ERROR: {str(e)}")
+                data['network_data'] = serializable_network
+            except Exception as e:
+                logging.warning(f"Could not serialize network data: {e}")
+                data['network_data'] = []
+        
+        # Safely add quantum data
+        if self.quantum_data:
+            try:
+                # Convert quantum data to serializable format
+                serializable_quantum = []
+                for i, entry in enumerate(self.quantum_data):
+                    try:
+                        if isinstance(entry, dict):
+                            clean_entry = {}
+                            for key, value in entry.items():
+                                if hasattr(value, 'item'):  # numpy scalar
+                                    clean_entry[key] = float(value.item())
+                                elif isinstance(value, (list, tuple)):
+                                    clean_entry[key] = [float(x) if hasattr(x, 'item') else float(x) for x in value]
+                                elif isinstance(value, (int, float, str, bool)):
+                                    clean_entry[key] = value
+                                else:
+                                    clean_entry[key] = str(value)
+                            serializable_quantum.append(clean_entry)
+                        else:
+                            serializable_quantum.append(str(entry))
+                    except Exception as e:
+                        logging.warning(f"Could not serialize quantum entry {i}: {e}")
+                        serializable_quantum.append(f"ERROR: {str(e)}")
+                data['quantum_data'] = serializable_quantum
+            except Exception as e:
+                logging.warning(f"Could not serialize quantum data: {e}")
+                data['quantum_data'] = []
+        
         try:
+            # Debug: Check data structure before saving
+            logging.debug(f"Attempting to save data with keys: {list(data.keys())}")
+            for key, value in data.items():
+                logging.debug(f"Data key '{key}' type: {type(value)}, length: {len(value) if hasattr(value, '__len__') else 'N/A'}")
+            
             with open(filename, 'w') as f:
-                yaml.dump(data, f, default_flow_style=False)
+                json.dump(data, f, indent=2, default=str)
             logging.info(f"Simulation data saved to {filename}")
         except Exception as e:
             logging.error(f"Failed to save simulation data: {e}")
+            # Try saving a minimal version
+            try:
+                minimal_filename = Path(filename).parent / f"minimal_{Path(filename).name}"
+                minimal_data = {
+                    'config': data['config'],
+                    'performance_metrics': data['performance_metrics'],
+                    'error': f"Data serialization failed: {e}"
+                }
+                with open(minimal_filename, 'w') as f:
+                    json.dump(minimal_data, f, indent=2, default=str)
+                logging.info(f"Minimal simulation data saved to {minimal_filename}")
+            except Exception as e2:
+                logging.error(f"Failed to save even minimal data: {e2}")
     
     def setup_visualization(self):
         """Setup real-time visualization (disabled for stability)"""

@@ -75,7 +75,7 @@ The Quantum HALE Drone System represents a breakthrough in autonomous aerial sys
 ### **1. Clone & Setup**
 ```bash
 # Clone the repository
-git clone https://github.com/your-org/quantum-hale-drone.git
+git clone https://github.com/simonyooon/quantum-hale-drone.git
 cd quantum-hale-drone
 
 # Run automated setup
@@ -408,7 +408,7 @@ We welcome contributions! Please see our [Contributing Guide](docs/development.m
 ### **Development Setup**
 ```bash
 # Clone and setup development environment
-git clone https://github.com/your-org/quantum-hale-drone.git
+git clone https://github.com/simonyooon/quantum-hale-drone.git
 cd quantum-hale-drone
 python -m venv venv
 source venv/bin/activate  # or `venv\Scripts\activate` on Windows

@@ -1,0 +1,949 @@
+{
+  "config": {
+    "duration": 3.0,
+    "timestep": 0.1,
+    "real_time_factor": 1.0,
+    "num_drones": 2
+  },
+  "performance_metrics": {
+    "start_time": 1750884450.7915494,
+    "real_time_factor": 1.0,
+    "cpu_usage": 0.0,
+    "memory_usage": 0.0,
+    "simulation_rate": 99.93338257368183
+  },
+  "telemetry_data": [
+    {
+      "timestamp": 0.01,
+      "position": "{'latitude': 4.496609259992323e-06, 'longitude': 0.0, 'altitude': 19999.999025130277}",
+      "velocity": "{'airspeed': 50.000108718390315, 'ground_speed': 50.00001368140898, 'heading': 0.0}",
+      "attitude": "{'roll': 0.0, 'pitch': 0.0, 'yaw': 0.0}",
+      "energy": "{'total_energy': 19981939535.398834, 'fuel_remaining': 99999.99976250465, 'fuel_consumption_rate': 0.0}",
+      "flight_phase": "cruise",
+      "controls": "{'throttle': 0.3, 'elevator': 0.0, 'aileron': 0.0, 'rudder': 0.0}",
+      "performance": "{'flight_time': 0.01, 'distance_traveled': 0.5000001368140898, 'fuel_consumed': 0.00023749534866883472}",
+      "simulation_time": 0.10113334655761719
+    },
+    {
+      "timestamp": 0.02,
+      "position": "{'latitude': 8.993217639800606e-06, 'longitude': 0.0, 'altitude': 19999.997075438532}",
+      "velocity": "{'airspeed': 50.00038402252371, 'ground_speed': 50.00000389420901, 'heading': 0.0}",
+      "attitude": "{'roll': 0.0, 'pitch': 0.0, 'yaw': 0.0}",
+      "energy": "{'total_energy': 19981938992.84524, 'fuel_remaining': 99999.99976250465, 'fuel_consumption_rate': 0.0}",
+      "flight_phase": "cruise",
+      "controls": "{'throttle': 0.0, 'elevator': 0.0, 'aileron': 0.0, 'rudder': 0.0}",
+      "performance": "{'flight_time': 0.02, 'distance_traveled': 1.0000001757561798, 'fuel_consumed': 0.00023749534866883472}",
+      "simulation_time": 0.10261273384094238
+    },
+    {
+      "timestamp": 0.03,
+      "position": "{'latitude': 1.3489825139240877e-05, 'longitude': 0.0, 'altitude': 19999.99415097247}",
+      "velocity": "{'airspeed': 50.0008493479248, 'ground_speed': 49.99999410496338, 'heading': 0.0}",
+      "attitude": "{'roll': 0.0, 'pitch': 0.0, 'yaw': 0.0}",
+      "energy": "{'total_energy': 19981938444.092793, 'fuel_remaining': 99999.99976250465, 'fuel_consumption_rate': 0.0}",
+      "flight_phase": "cruise",
+      "controls": "{'throttle': 0.0, 'elevator': 0.0, 'aileron': 0.0, 'rudder': 0.0}",
+      "performance": "{'flight_time': 0.03, 'distance_traveled': 1.5000001168058137, 'fuel_consumed': 0.00023749534866883472}",
+      "simulation_time": 0.20231413841247559
+    },
+    {
+      "timestamp": 0.04,
+      "position": "{'latitude': 1.7986431758006355e-05, 'longitude': 0.0, 'altitude': 19999.99025177979}",
+      "velocity": "{'airspeed': 50.00150466002608, 'ground_speed': 49.99998431230647, 'heading': 0.0}",
+      "attitude": "{'roll': 0.0, 'pitch': 0.0, 'yaw': 0.0}",
+      "energy": "{'total_energy': 19981937889.040768, 'fuel_remaining': 99999.99976250465, 'fuel_consumption_rate': 0.0}",
+      "flight_phase": "cruise",
+      "controls": "{'throttle': 0.0, 'elevator': 0.0, 'aileron': 0.0, 'rudder': 0.0}",
+      "performance": "{'flight_time': 0.04, 'distance_traveled': 1.9999999599288785, 'fuel_consumed': 0.00023749534866883472}",
+      "simulation_time": 0.20363593101501465
+    },
+    {
+      "timestamp": 0.05,
+      "position": "{'latitude': 2.2483037495667454e-05, 'longitude': 0.0, 'altitude': 19999.985377908186}",
+      "velocity": "{'airspeed': 50.002349922097686, 'ground_speed': 49.99997451487281, 'heading': 0.0}",
+      "attitude": "{'roll': 0.0, 'pitch': 0.0, 'yaw': 0.0}",
+      "energy": "{'total_energy': 19981937327.58845, 'fuel_remaining': 99999.99976250465, 'fuel_consumption_rate': 0.0}",
+      "flight_phase": "cruise",
+      "controls": "{'throttle': 0.0, 'elevator': 0.0, 'aileron': 0.0, 'rudder': 0.0}",
+      "performance": "{'flight_time': 0.05, 'distance_traveled': 2.499999705077607, 'fuel_consumed': 0.00023749534866883472}",
+      "simulation_time": 0.30319929122924805
+    },
+    {
+      "timestamp": 0.060000000000000005,
+      "position": "{'latitude': 2.6979642351671806e-05, 'longitude': 0.0, 'altitude': 19999.979529405362}",
+      "velocity": "{'airspeed': 50.00338509524819, 'ground_speed': 49.99996471129707, 'heading': 0.0}",
+      "attitude": "{'roll': 0.0, 'pitch': 0.0, 'yaw': 0.0}",
+      "energy": "{'total_energy': 19981936759.635147, 'fuel_remaining': 99999.99976250465, 'fuel_consumption_rate': 0.0}",
+      "flight_phase": "cruise",
+      "controls": "{'throttle': 0.0, 'elevator': 0.0, 'aileron': 0.0, 'rudder': 0.0}",
+      "performance": "{'flight_time': 0.060000000000000005, 'distance_traveled': 2.9999993521905775, 'fuel_consumed': 0.00023749534866883472}",
+      "simulation_time": 0.3045618534088135
+    },
+    {
+      "timestamp": 0.07,
+      "position": "{'latitude': 3.147624632534426e-05, 'longitude': 0.0, 'altitude': 19999.97270631902}",
+      "velocity": "{'airspeed': 50.00461013842548, 'ground_speed': 49.999954900214, 'heading': 0.0}",
+      "attitude": "{'roll': 0.0, 'pitch': 0.0, 'yaw': 0.0}",
+      "energy": "{'total_energy': 19981936185.080154, 'fuel_remaining': 99999.99976250465, 'fuel_consumption_rate': 0.0}",
+      "flight_phase": "cruise",
+      "controls": "{'throttle': 0.0, 'elevator': 0.0, 'aileron': 0.0, 'rudder': 0.0}",
+      "performance": "{'flight_time': 0.07, 'distance_traveled': 3.4999989011927175, 'fuel_consumed': 0.00023749534866883472}",
+      "simulation_time": 0.4041595458984375
+    },
+    {
+      "timestamp": 0.08,
+      "position": "{'latitude': 3.59728494158869e-05, 'longitude': 0.0, 'altitude': 19999.964908696857}",
+      "velocity": "{'airspeed': 50.00602500841782, 'ground_speed': 49.99994508025846, 'heading': 0.0}",
+      "attitude": "{'roll': 0.0, 'pitch': 0.0, 'yaw': 0.0}",
+      "energy": "{'total_energy': 19981935603.82276, 'fuel_remaining': 99999.99976250465, 'fuel_consumption_rate': 0.0}",
+      "flight_phase": "cruise",
+      "controls": "{'throttle': 0.0, 'elevator': 0.0, 'aileron': 0.0, 'rudder': 0.0}",
+      "performance": "{'flight_time': 0.08, 'distance_traveled': 3.999998351995302, 'fuel_consumed': 0.00023749534866883472}",
+      "simulation_time": 0.4056110382080078
+    },
+    {
+      "timestamp": 0.09,
+      "position": "{'latitude': 4.046945162237903e-05, 'longitude': 0.0, 'altitude': 19999.956136586585}",
+      "velocity": "{'airspeed': 50.007629659855034, 'ground_speed': 49.99993525006538, 'heading': 0.0}",
+      "attitude": "{'roll': 0.0, 'pitch': 0.0, 'yaw': 0.0}",
+      "energy": "{'total_energy': 19981935015.762276, 'fuel_remaining': 99999.99976250465, 'fuel_consumption_rate': 0.0}",
+      "flight_phase": "cruise",
+      "controls": "{'throttle': 0.0, 'elevator': 0.0, 'aileron': 0.0, 'rudder': 0.0}",
+      "performance": "{'flight_time': 0.09, 'distance_traveled': 4.499997704495955, 'fuel_consumed': 0.00023749534866883472}",
+      "simulation_time": 0.5048961639404297
+    },
+    {
+      "timestamp": 0.09999999999999999,
+      "position": "{'latitude': 4.496605294377722e-05, 'longitude': 0.0, 'altitude': 19999.946390035908}",
+      "velocity": "{'airspeed': 50.00942404520971, 'ground_speed': 49.9999254082697, 'heading': 0.0}",
+      "attitude": "{'roll': 0.0, 'pitch': 0.0, 'yaw': 0.0}",
+      "energy": "{'total_energy': 19981934420.797966, 'fuel_remaining': 99999.99976250465, 'fuel_consumption_rate': 0.0}",
+      "flight_phase": "cruise",
+      "controls": "{'throttle': 0.0, 'elevator': 0.0, 'aileron': 0.0, 'rudder': 0.0}",
+      "performance": "{'flight_time': 0.09999999999999999, 'distance_traveled': 4.999996958578652, 'fuel_consumed': 0.00023749534866883472}",
+      "simulation_time": 0.5069007873535156
+    },
+    {
+      "timestamp": 0.10999999999999999,
+      "position": "{'latitude': 4.9462653378915244e-05, 'longitude': 0.0, 'altitude': 19999.935669092538}",
+      "velocity": "{'airspeed': 50.01140811479869, 'ground_speed': 49.99991555350641, 'heading': 0.0}",
+      "attitude": "{'roll': 0.0, 'pitch': 0.0, 'yaw': 0.0}",
+      "energy": "{'total_energy': 19981933818.829117, 'fuel_remaining': 99999.99976250465, 'fuel_consumption_rate': 0.0}",
+      "flight_phase": "descent",
+      "controls": "{'throttle': 0.0, 'elevator': 0.0, 'aileron': 0.0, 'rudder': 0.0}",
+      "performance": "{'flight_time': 0.10999999999999999, 'distance_traveled': 5.499996114113716, 'fuel_consumed': 0.00023749534866883472}",
+      "simulation_time": 0.6053588390350342
+    },
+    {
+      "timestamp": 0.11999999999999998,
+      "position": "{'latitude': 5.395925292650416e-05, 'longitude': 0.0, 'altitude': 19999.923973804194}",
+      "velocity": "{'airspeed': 50.01358181678453, 'ground_speed': 49.99990568441051, 'heading': 0.0}",
+      "attitude": "{'roll': 0.0, 'pitch': 0.0, 'yaw': 0.0}",
+      "energy": "{'total_energy': 19981933209.754993, 'fuel_remaining': 99999.99976250465, 'fuel_consumption_rate': 0.0}",
+      "flight_phase": "descent",
+      "controls": "{'throttle': 0.0, 'elevator': 0.0, 'aileron': 0.0, 'rudder': 0.0}",
+      "performance": "{'flight_time': 0.11999999999999998, 'distance_traveled': 5.999995170957821, 'fuel_consumed': 0.00023749534866883472}",
+      "simulation_time": 0.6078760623931885
+    },
+    {
+      "timestamp": 0.12999999999999998,
+      "position": "{'latitude': 5.8455851585132227e-05, 'longitude': 0.0, 'altitude': 19999.9113042186}",
+      "velocity": "{'airspeed': 50.01594509717717, 'ground_speed': 49.99989579961695, 'heading': 0.0}",
+      "attitude": "{'roll': 0.0, 'pitch': 0.0, 'yaw': 0.0}",
+      "energy": "{'total_energy': 19981932593.47484, 'fuel_remaining': 99999.99976250465, 'fuel_consumption_rate': 0.0}",
+      "flight_phase": "descent",
+      "controls": "{'throttle': 0.0, 'elevator': 0.0, 'aileron': 0.0, 'rudder': 0.0}",
+      "performance": "{'flight_time': 0.12999999999999998, 'distance_traveled': 6.499994128953991, 'fuel_consumed': 0.00023749534866883472}",
+      "simulation_time": 0.7059698104858398
+    },
+    {
+      "timestamp": 0.13999999999999999,
+      "position": "{'latitude': 6.295244935326497e-05, 'longitude': 0.0, 'altitude': 19999.897660383485}",
+      "velocity": "{'airspeed': 50.01849789983575, 'ground_speed': 49.99988589776068, 'heading': 0.0}",
+      "attitude": "{'roll': 0.0, 'pitch': 0.0, 'yaw': 0.0}",
+      "energy": "{'total_energy': 19981931969.887886, 'fuel_remaining': 99999.99976250465, 'fuel_consumption_rate': 0.0}",
+      "flight_phase": "descent",
+      "controls": "{'throttle': 0.0, 'elevator': 0.0, 'aileron': 0.0, 'rudder': 0.0}",
+      "performance": "{'flight_time': 0.13999999999999999, 'distance_traveled': 6.999992987931598, 'fuel_consumed': 0.00023749534866883472}",
+      "simulation_time": 0.7086193561553955
+    },
+    {
+      "timestamp": 0.15,
+      "position": "{'latitude': 6.744904622924512e-05, 'longitude': 0.0, 'altitude': 19999.883042346584}",
+      "velocity": "{'airspeed': 50.02124016647041, 'ground_speed': 49.999875977476556, 'heading': 0.0}",
+      "attitude": "{'roll': 0.0, 'pitch': 0.0, 'yaw': 0.0}",
+      "energy": "{'total_energy': 19981931338.89333, 'fuel_remaining': 99999.99976250465, 'fuel_consumption_rate': 0.0}",
+      "flight_phase": "descent",
+      "controls": "{'throttle': 0.0, 'elevator': 0.0, 'aileron': 0.0, 'rudder': 0.0}",
+      "performance": "{'flight_time': 0.15, 'distance_traveled': 7.499991747706363, 'fuel_consumed': 0.00023749534866883472}",
+      "simulation_time": 0.8065557479858398
+    },
+    {
+      "timestamp": 0.16,
+      "position": "{'latitude': 7.194564221129267e-05, 'longitude': 0.0, 'altitude': 19999.86745015564}",
+      "velocity": "{'airspeed': 50.0241718366444, 'ground_speed': 49.999866037399386, 'heading': 0.0}",
+      "attitude": "{'roll': 0.0, 'pitch': 0.0, 'yaw': 0.0}",
+      "energy": "{'total_energy': 19981930700.390354, 'fuel_remaining': 99999.99976250465, 'fuel_consumption_rate': 0.0}",
+      "flight_phase": "descent",
+      "controls": "{'throttle': 0.0, 'elevator': 0.0, 'aileron': 0.0, 'rudder': 0.0}",
+      "performance": "{'flight_time': 0.16, 'distance_traveled': 7.999990408080357, 'fuel_consumed': 0.00023749534866883472}",
+      "simulation_time": 0.8093459606170654
+    },
+    {
+      "timestamp": 0.17,
+      "position": "{'latitude': 7.644223729750478e-05, 'longitude': 0.0, 'altitude': 19999.85088385841}",
+      "velocity": "{'airspeed': 50.027292847776124, 'ground_speed': 49.99985607616385, 'heading': 0.0}",
+      "attitude": "{'roll': 0.0, 'pitch': 0.0, 'yaw': 0.0}",
+      "energy": "{'total_energy': 19981930054.278114, 'fuel_remaining': 99999.99976250465, 'fuel_consumption_rate': 0.0}",
+      "flight_phase": "descent",
+      "controls": "{'throttle': 0.0, 'elevator': 0.0, 'aileron': 0.0, 'rudder': 0.0}",
+      "performance": "{'flight_time': 0.17, 'distance_traveled': 8.499988968841995, 'fuel_consumed': 0.00023749534866883472}",
+      "simulation_time": 0.9071571826934814
+    },
+    {
+      "timestamp": 0.18000000000000002,
+      "position": "{'latitude': 8.093883148585584e-05, 'longitude': 0.0, 'altitude': 19999.83334350265}",
+      "velocity": "{'airspeed': 50.030603135141476, 'ground_speed': 49.99984609240453, 'heading': 0.0}",
+      "attitude": "{'roll': 0.0, 'pitch': 0.0, 'yaw': 0.0}",
+      "energy": "{'total_energy': 19981929400.455723, 'fuel_remaining': 99999.99976250465, 'fuel_consumption_rate': 0.0}",
+      "flight_phase": "descent",
+      "controls": "{'throttle': 0.0, 'elevator': 0.0, 'aileron': 0.0, 'rudder': 0.0}",
+      "performance": "{'flight_time': 0.18000000000000002, 'distance_traveled': 8.99998742976604, 'fuel_consumed': 0.00023749534866883472}",
+      "simulation_time": 0.9104182720184326
+    },
+    {
+      "timestamp": 0.19000000000000003,
+      "position": "{'latitude': 8.543542477419742e-05, 'longitude': 0.0, 'altitude': 19999.814829136136}",
+      "velocity": "{'airspeed': 50.034102631876166, 'ground_speed': 49.99983608475585, 'heading': 0.0}",
+      "attitude": "{'roll': 0.0, 'pitch': 0.0, 'yaw': 0.0}",
+      "energy": "{'total_energy': 19981928738.822273, 'fuel_remaining': 99999.99976250465, 'fuel_consumption_rate': 0.0}",
+      "flight_phase": "descent",
+      "controls": "{'throttle': 0.0, 'elevator': 0.0, 'aileron': 0.0, 'rudder': 0.0}",
+      "performance": "{'flight_time': 0.19000000000000003, 'distance_traveled': 9.499985790613598, 'fuel_consumed': 0.00023749534866883472}",
+      "simulation_time": 1.0078258514404297
+    },
+    {
+      "timestamp": 0.20000000000000004,
+      "position": "{'latitude': 8.993201716025831e-05, 'longitude': 0.0, 'altitude': 19999.795340806646}",
+      "velocity": "{'airspeed': 50.03779126897822, 'ground_speed': 49.99982605185207, 'heading': 0.0}",
+      "attitude": "{'roll': 0.0, 'pitch': 0.0, 'yaw': 0.0}",
+      "energy": "{'total_energy': 19981928069.276806, 'fuel_remaining': 99999.99976250465, 'fuel_consumption_rate': 0.0}",
+      "flight_phase": "descent",
+      "controls": "{'throttle': 0.0, 'elevator': 0.0, 'aileron': 0.0, 'rudder': 0.0}",
+      "performance": "{'flight_time': 0.20000000000000004, 'distance_traveled': 9.999984051132119, 'fuel_consumed': 0.00023749534866883472}",
+      "simulation_time": 1.01190185546875
+    },
+    {
+      "timestamp": 0.21000000000000005,
+      "position": "{'latitude': 9.442860864164439e-05, 'longitude': 0.0, 'altitude': 19999.77487856198}",
+      "velocity": "{'airspeed': 50.041668975310635, 'ground_speed': 49.999815992327285, 'heading': 0.0}",
+      "attitude": "{'roll': 0.0, 'pitch': 0.0, 'yaw': 0.0}",
+      "energy": "{'total_energy': 19981927391.718338, 'fuel_remaining': 99999.99976250465, 'fuel_consumption_rate': 0.0}",
+      "flight_phase": "descent",
+      "controls": "{'throttle': 0.0, 'elevator': 0.0, 'aileron': 0.0, 'rudder': 0.0}",
+      "performance": "{'flight_time': 0.21000000000000005, 'distance_traveled': 10.499982211055391, 'fuel_consumed': 0.00023749534866883472}",
+      "simulation_time": 1.1084866523742676
+    },
+    {
+      "timestamp": 0.22000000000000006,
+      "position": "{'latitude': 9.892519921583874e-05, 'longitude': 0.0, 'altitude': 19999.753442449943}",
+      "velocity": "{'airspeed': 50.04573567760407, 'ground_speed': 49.999805904815375, 'heading': 0.0}",
+      "attitude": "{'roll': 0.0, 'pitch': 0.0, 'yaw': 0.0}",
+      "energy": "{'total_energy': 19981926706.04583, 'fuel_remaining': 99999.99976250465, 'fuel_consumption_rate': 0.0}",
+      "flight_phase": "descent",
+      "controls": "{'throttle': 0.0, 'elevator': 0.0, 'aileron': 0.0, 'rudder': 0.0}",
+      "performance": "{'flight_time': 0.22000000000000006, 'distance_traveled': 10.999980270103546, 'fuel_consumed': 0.00023749534866883472}",
+      "simulation_time": 1.1130023002624512
+    },
+    {
+      "timestamp": 0.23000000000000007,
+      "position": "{'latitude': 0.00010342178888020152, 'longitude': 0.0, 'altitude': 19999.73103251835}",
+      "velocity": "{'airspeed': 50.049991300459716, 'ground_speed': 49.99979578794999, 'heading': 0.0}",
+      "attitude": "{'roll': 0.0, 'pitch': 0.0, 'yaw': 0.0}",
+      "energy": "{'total_energy': 19981926012.158195, 'fuel_remaining': 99999.99976250465, 'fuel_consumption_rate': 0.0}",
+      "flight_phase": "descent",
+      "controls": "{'throttle': 0.0, 'elevator': 0.0, 'aileron': 0.0, 'rudder': 0.0}",
+      "performance": "{'flight_time': 0.23000000000000007, 'distance_traveled': 11.499978227983046, 'fuel_consumed': 0.00023749534866883472}",
+      "simulation_time": 1.2095558643341064
+    },
+    {
+      "timestamp": 0.24000000000000007,
+      "position": "{'latitude': 0.00010791837763197, 'longitude': 0.0, 'altitude': 19999.707648815038}",
+      "velocity": "{'airspeed': 50.054435766352285, 'ground_speed': 49.99978564036456, 'heading': 0.0}",
+      "attitude": "{'roll': 0.0, 'pitch': 0.0, 'yaw': 0.0}",
+      "energy": "{'total_energy': 19981925309.95431, 'fuel_remaining': 99999.99976250465, 'fuel_consumption_rate': 0.0}",
+      "flight_phase": "descent",
+      "controls": "{'throttle': 0.0, 'elevator': 0.0, 'aileron': 0.0, 'rudder': 0.0}",
+      "performance": "{'flight_time': 0.24000000000000007, 'distance_traveled': 11.999976084386692, 'fuel_consumed': 0.00023749534866883472}",
+      "simulation_time": 1.213780403137207
+    },
+    {
+      "timestamp": 0.25000000000000006,
+      "position": "{'latitude': 0.00011241496546825857, 'longitude': 0.0, 'altitude': 19999.683291387853}",
+      "velocity": "{'airspeed': 50.059068995633105, 'ground_speed': 49.99977546069223, 'heading': 0.0}",
+      "attitude": "{'roll': 0.0, 'pitch': 0.0, 'yaw': 0.0}",
+      "energy": "{'total_energy': 19981924599.332985, 'fuel_remaining': 99999.99976250465, 'fuel_consumption_rate': 0.0}",
+      "flight_phase": "descent",
+      "controls": "{'throttle': 0.0, 'elevator': 0.0, 'aileron': 0.0, 'rudder': 0.0}",
+      "performance": "{'flight_time': 0.25000000000000006, 'distance_traveled': 12.499973838993615, 'fuel_consumed': 0.00023749534866883472}",
+      "simulation_time": 1.3106141090393066
+    },
+    {
+      "timestamp": 0.26000000000000006,
+      "position": "{'latitude': 0.00011691155238605863, 'longitude': 0.0, 'altitude': 19999.65796028466}",
+      "velocity": "{'airspeed': 50.06389090653328, 'ground_speed': 49.99976524756586, 'heading': 0.0}",
+      "attitude": "{'roll': 0.0, 'pitch': 0.0, 'yaw': 0.0}",
+      "energy": "{'total_energy': 19981923880.19299, 'fuel_remaining': 99999.99976250465, 'fuel_consumption_rate': 0.0}",
+      "flight_phase": "descent",
+      "controls": "{'throttle': 0.0, 'elevator': 0.0, 'aileron': 0.0, 'rudder': 0.0}",
+      "performance": "{'flight_time': 0.26000000000000006, 'distance_traveled': 12.999971491469273, 'fuel_consumed': 0.00023749534866883472}",
+      "simulation_time": 1.31512451171875
+    },
+    {
+      "timestamp": 0.2700000000000001,
+      "position": "{'latitude': 0.00012140813838223858, 'longitude': 0.0, 'altitude': 19999.631655553338}",
+      "velocity": "{'airspeed': 50.06890141516709, 'ground_speed': 49.99975499961802, 'heading': 0.0}",
+      "attitude": "{'roll': 0.0, 'pitch': 0.0, 'yaw': 0.0}",
+      "energy": "{'total_energy': 19981923152.433025, 'fuel_remaining': 99999.99976250465, 'fuel_consumption_rate': 0.0}",
+      "flight_phase": "descent",
+      "controls": "{'throttle': 0.0, 'elevator': 0.0, 'aileron': 0.0, 'rudder': 0.0}",
+      "performance": "{'flight_time': 0.2700000000000001, 'distance_traveled': 13.499969041465453, 'fuel_consumed': 0.00023749534866883472}",
+      "simulation_time": 1.4116623401641846
+    },
+    {
+      "timestamp": 0.2800000000000001,
+      "position": "{'latitude': 0.00012590472345354388, 'longitude': 0.0, 'altitude': 19999.60437724178}",
+      "velocity": "{'airspeed': 50.074100435535385, 'ground_speed': 49.999744715480944, 'heading': 0.0}",
+      "attitude": "{'roll': 0.0, 'pitch': 0.0, 'yaw': 0.0}",
+      "energy": "{'total_energy': 19981922415.951725, 'fuel_remaining': 99999.99976250465, 'fuel_consumption_rate': 0.0}",
+      "flight_phase": "descent",
+      "controls": "{'throttle': 0.0, 'elevator': 0.0, 'aileron': 0.0, 'rudder': 0.0}",
+      "performance": "{'flight_time': 0.2800000000000001, 'distance_traveled': 13.999966488620263, 'fuel_consumed': 0.00023749534866883472}",
+      "simulation_time": 1.4161725044250488
+    },
+    {
+      "timestamp": 0.2900000000000001,
+      "position": "{'latitude': 0.00013040130759659686, 'longitude': 0.0, 'altitude': 19999.5761253979}",
+      "velocity": "{'airspeed': 50.07948787952917, 'ground_speed': 49.999734393786525, 'heading': 0.0}",
+      "attitude": "{'roll': 0.0, 'pitch': 0.0, 'yaw': 0.0}",
+      "energy": "{'total_energy': 19981921670.64767, 'fuel_remaining': 99999.99976250465, 'fuel_consumption_rate': 0.0}",
+      "flight_phase": "descent",
+      "controls": "{'throttle': 0.0, 'elevator': 0.0, 'aileron': 0.0, 'rudder': 0.0}",
+      "performance": "{'flight_time': 0.2900000000000001, 'distance_traveled': 14.499963832558128, 'fuel_consumed': 0.00023749534866883472}",
+      "simulation_time": 1.512317180633545
+    },
+    {
+      "timestamp": 0.3000000000000001,
+      "position": "{'latitude': 0.0001348978908078969, 'longitude': 0.0, 'altitude': 19999.54690006963}",
+      "velocity": "{'airspeed': 50.085063656933286, 'ground_speed': 49.999724033166295, 'heading': 0.0}",
+      "attitude": "{'roll': 0.0, 'pitch': 0.0, 'yaw': 0.0}",
+      "energy": "{'total_energy': 19981920916.41938, 'fuel_remaining': 99999.99976250465, 'fuel_consumption_rate': 0.0}",
+      "flight_phase": "descent",
+      "controls": "{'throttle': 0.0, 'elevator': 0.0, 'aileron': 0.0, 'rudder': 0.0}",
+      "performance": "{'flight_time': 0.3000000000000001, 'distance_traveled': 14.999961072889791, 'fuel_consumed': 0.00023749534866883472}",
+      "simulation_time": 1.5181005001068115
+    },
+    {
+      "timestamp": 0.3100000000000001,
+      "position": "{'latitude': 0.0001393944730838202, 'longitude': 0.0, 'altitude': 19999.516701304914}",
+      "velocity": "{'airspeed': 50.090827675430184, 'ground_speed': 49.99971363225139, 'heading': 0.0}",
+      "attitude": "{'roll': 0.0, 'pitch': 0.0, 'yaw': 0.0}",
+      "energy": "{'total_energy': 19981920153.165283, 'fuel_remaining': 99999.99976250465, 'fuel_consumption_rate': 0.0}",
+      "flight_phase": "descent",
+      "controls": "{'throttle': 0.0, 'elevator': 0.0, 'aileron': 0.0, 'rudder': 0.0}",
+      "performance": "{'flight_time': 0.3100000000000001, 'distance_traveled': 15.499958209212306, 'fuel_consumed': 0.00023749534866883472}",
+      "simulation_time": 1.61314058303833
+    },
+    {
+      "timestamp": 0.3200000000000001,
+      "position": "{'latitude': 0.0001438910544206198, 'longitude': 0.0, 'altitude': 19999.485529151727}",
+      "velocity": "{'airspeed': 50.09677984060386, 'ground_speed': 49.99970318967255, 'heading': 0.0}",
+      "attitude": "{'roll': 0.0, 'pitch': 0.0, 'yaw': 0.0}",
+      "energy": "{'total_energy': 19981919380.783745, 'fuel_remaining': 99999.99976250465, 'fuel_consumption_rate': 0.0}",
+      "flight_phase": "descent",
+      "controls": "{'throttle': 0.0, 'elevator': 0.0, 'aileron': 0.0, 'rudder': 0.0}",
+      "performance": "{'flight_time': 0.3200000000000001, 'distance_traveled': 15.999955241109031, 'fuel_consumed': 0.00023749534866883472}",
+      "simulation_time": 1.6191556453704834
+    },
+    {
+      "timestamp": 0.3300000000000001,
+      "position": "{'latitude': 0.00014838763481442568, 'longitude': 0.0, 'altitude': 19999.45338365806}",
+      "velocity": "{'airspeed': 50.10292005594385, 'ground_speed': 49.99969270406009, 'heading': 0.0}",
+      "attitude": "{'roll': 0.0, 'pitch': 0.0, 'yaw': 0.0}",
+      "energy": "{'total_energy': 19981918599.17307, 'fuel_remaining': 99999.99976250465, 'fuel_consumption_rate': 0.0}",
+      "flight_phase": "descent",
+      "controls": "{'throttle': 0.0, 'elevator': 0.0, 'aileron': 0.0, 'rudder': 0.0}",
+      "performance": "{'flight_time': 0.3300000000000001, 'distance_traveled': 16.499952168149633, 'fuel_consumed': 0.00023749534866883472}",
+      "simulation_time": 1.7139196395874023
+    },
+    {
+      "timestamp": 0.34000000000000014,
+      "position": "{'latitude': 0.00015288421426124438, 'longitude': 0.0, 'altitude': 19999.42026487192}",
+      "velocity": "{'airspeed': 50.10924822284941, 'ground_speed': 49.99968217404387, 'heading': 0.0}",
+      "attitude": "{'roll': 0.0, 'pitch': 0.0, 'yaw': 0.0}",
+      "energy": "{'total_energy': 19981917808.231453, 'fuel_remaining': 99999.99976250465, 'fuel_consumption_rate': 0.0}",
+      "flight_phase": "descent",
+      "controls": "{'throttle': 0.0, 'elevator': 0.0, 'aileron': 0.0, 'rudder': 0.0}",
+      "performance": "{'flight_time': 0.34000000000000014, 'distance_traveled': 16.999948989890072, 'fuel_consumed': 0.00023749534866883472}",
+      "simulation_time": 1.720210075378418
+    },
+    {
+      "timestamp": 0.35000000000000014,
+      "position": "{'latitude': 0.0001573807927569594, 'longitude': 0.0, 'altitude': 19999.38617284134}",
+      "velocity": "{'airspeed': 50.115764240633716, 'ground_speed': 49.9996715982533, 'heading': 0.0}",
+      "attitude": "{'roll': 0.0, 'pitch': 0.0, 'yaw': 0.0}",
+      "energy": "{'total_energy': 19981917007.857037, 'fuel_remaining': 99999.99976250465, 'fuel_consumption_rate': 0.0}",
+      "flight_phase": "descent",
+      "controls": "{'throttle': 0.0, 'elevator': 0.0, 'aileron': 0.0, 'rudder': 0.0}",
+      "performance": "{'flight_time': 0.35000000000000014, 'distance_traveled': 17.499945705872605, 'fuel_consumed': 0.00023749534866883472}",
+      "simulation_time": 1.8148000240325928
+    },
+    {
+      "timestamp": 0.36000000000000015,
+      "position": "{'latitude': 0.00016187737029733088, 'longitude': 0.0, 'altitude': 19999.351107614377}",
+      "velocity": "{'airspeed': 50.122468006528266, 'ground_speed': 49.99966097531729, 'heading': 0.0}",
+      "attitude": "{'roll': 0.0, 'pitch': 0.0, 'yaw': 0.0}",
+      "energy": "{'total_energy': 19981916197.947853, 'fuel_remaining': 99999.99976250465, 'fuel_consumption_rate': 0.0}",
+      "flight_phase": "descent",
+      "controls": "{'throttle': 0.0, 'elevator': 0.0, 'aileron': 0.0, 'rudder': 0.0}",
+      "performance": "{'flight_time': 0.36000000000000015, 'distance_traveled': 17.999942315625777, 'fuel_consumed': 0.00023749534866883472}",
+      "simulation_time": 1.82088041305542
+    },
+    {
+      "timestamp": 0.37000000000000016,
+      "position": "{'latitude': 0.00016637394687799546, 'longitude': 0.0, 'altitude': 19999.31506923911}",
+      "velocity": "{'airspeed': 50.12935941568737, 'ground_speed': 49.99965030386425, 'heading': 0.0}",
+      "attitude": "{'roll': 0.0, 'pitch': 0.0, 'yaw': 0.0}",
+      "energy": "{'total_energy': 19981915378.40187, 'fuel_remaining': 99999.99976250465, 'fuel_consumption_rate': 0.0}",
+      "flight_phase": "descent",
+      "controls": "{'throttle': 0.0, 'elevator': 0.0, 'aileron': 0.0, 'rudder': 0.0}",
+      "performance": "{'flight_time': 0.37000000000000016, 'distance_traveled': 18.49993881866442, 'fuel_consumed': 0.00023749534866883472}",
+      "simulation_time": 1.9156041145324707
+    },
+    {
+      "timestamp": 0.38000000000000017,
+      "position": "{'latitude': 0.0001708705224944666, 'longitude': 0.0, 'altitude': 19999.27805776364}",
+      "velocity": "{'airspeed': 50.13643836119267, 'ground_speed': 49.99963958252207, 'heading': 0.0}",
+      "attitude": "{'roll': 0.0, 'pitch': 0.0, 'yaw': 0.0}",
+      "energy": "{'total_energy': 19981914549.11694, 'fuel_remaining': 99999.99976250465, 'fuel_consumption_rate': 0.0}",
+      "flight_phase": "descent",
+      "controls": "{'throttle': 0.0, 'elevator': 0.0, 'aileron': 0.0, 'rudder': 0.0}",
+      "performance": "{'flight_time': 0.38000000000000017, 'distance_traveled': 18.99993521448964, 'fuel_consumed': 0.00023749534866883472}",
+      "simulation_time": 1.9221241474151611
+    },
+    {
+      "timestamp": 0.3900000000000002,
+      "position": "{'latitude': 0.0001753670971421342, 'longitude': 0.0, 'altitude': 19999.2400732361}",
+      "velocity": "{'airspeed': 50.14370473405793, 'ground_speed': 49.9996288099181, 'heading': 0.0}",
+      "attitude": "{'roll': 0.0, 'pitch': 0.0, 'yaw': 0.0}",
+      "energy": "{'total_energy': 19981913709.99085, 'fuel_remaining': 99999.99976250465, 'fuel_consumption_rate': 0.0}",
+      "flight_phase": "descent",
+      "controls": "{'throttle': 0.0, 'elevator': 0.0, 'aileron': 0.0, 'rudder': 0.0}",
+      "performance": "{'flight_time': 0.3900000000000002, 'distance_traveled': 19.49993150258882, 'fuel_consumed': 0.00023749534866883472}",
+      "simulation_time": 2.016597032546997
+    },
+    {
+      "timestamp": 0.4000000000000002,
+      "position": "{'latitude': 0.00017986367081626467, 'longitude': 0.0, 'altitude': 19999.201115704633}",
+      "velocity": "{'airspeed': 50.15115842323378, 'ground_speed': 49.999617984679105, 'heading': 0.0}",
+      "attitude": "{'roll': 0.0, 'pitch': 0.0, 'yaw': 0.0}",
+      "energy": "{'total_energy': 19981912860.921257, 'fuel_remaining': 99999.99976250465, 'fuel_consumption_rate': 0.0}",
+      "flight_phase": "descent",
+      "controls": "{'throttle': 0.0, 'elevator': 0.0, 'aileron': 0.0, 'rudder': 0.0}",
+      "performance": "{'flight_time': 0.4000000000000002, 'distance_traveled': 19.999927682435608, 'fuel_consumed': 0.00023749534866883472}",
+      "simulation_time": 2.024160385131836
+    },
+    {
+      "timestamp": 0.4100000000000002,
+      "position": "{'latitude': 0.00018436024351200088, 'longitude': 0.0, 'altitude': 19999.161185217425}",
+      "velocity": "{'airspeed': 50.15879931561268, 'ground_speed': 49.99960710543129, 'heading': 0.0}",
+      "attitude": "{'roll': 0.0, 'pitch': 0.0, 'yaw': 0.0}",
+      "energy": "{'total_energy': 19981912001.80575, 'fuel_remaining': 99999.99976250465, 'fuel_consumption_rate': 0.0}",
+      "flight_phase": "descent",
+      "controls": "{'throttle': 0.0, 'elevator': 0.0, 'aileron': 0.0, 'rudder': 0.0}",
+      "performance": "{'flight_time': 0.4100000000000002, 'distance_traveled': 20.49992375348992, 'fuel_consumed': 0.00023749534866883472}",
+      "simulation_time": 2.1177730560302734
+    },
+    {
+      "timestamp": 0.4200000000000002,
+      "position": "{'latitude': 0.0001888568152243621, 'longitude': 0.0, 'altitude': 19999.12028182268}",
+      "velocity": "{'airspeed': 50.16662729603393, 'ground_speed': 49.999596170800245, 'heading': 0.0}",
+      "attitude": "{'roll': 0.0, 'pitch': 0.0, 'yaw': 0.0}",
+      "energy": "{'total_energy': 19981911132.541794, 'fuel_remaining': 99999.99976250465, 'fuel_consumption_rate': 0.0}",
+      "flight_phase": "descent",
+      "controls": "{'throttle': 0.0, 'elevator': 0.0, 'aileron': 0.0, 'rudder': 0.0}",
+      "performance": "{'flight_time': 0.4200000000000002, 'distance_traveled': 20.999919715197922, 'fuel_consumed': 0.00023749534866883472}",
+      "simulation_time": 2.1252355575561523
+    },
+    {
+      "timestamp": 0.4300000000000002,
+      "position": "{'latitude': 0.0001933533859482439, 'longitude': 0.0, 'altitude': 19999.078405568634}",
+      "velocity": "{'airspeed': 50.1746422472888, 'ground_speed': 49.999585179410936, 'heading': 0.0}",
+      "attitude": "{'roll': 0.0, 'pitch': 0.0, 'yaw': 0.0}",
+      "energy": "{'total_energy': 19981910253.026756, 'fuel_remaining': 99999.99976250465, 'fuel_consumption_rate': 0.0}",
+      "flight_phase": "descent",
+      "controls": "{'throttle': 0.0, 'elevator': 0.0, 'aileron': 0.0, 'rudder': 0.0}",
+      "performance": "{'flight_time': 0.4300000000000002, 'distance_traveled': 21.499915566992033, 'fuel_consumed': 0.00023749534866883472}",
+      "simulation_time": 2.2187442779541016
+    },
+    {
+      "timestamp": 0.4400000000000002,
+      "position": "{'latitude': 0.00019784995567841823, 'longitude': 0.0, 'altitude': 19999.035556503546}",
+      "velocity": "{'airspeed': 50.1828440501258, 'ground_speed': 49.9995741298877, 'heading': 0.0}",
+      "attitude": "{'roll': 0.0, 'pitch': 0.0, 'yaw': 0.0}",
+      "energy": "{'total_energy': 19981909363.157894, 'fuel_remaining': 99999.99976250465, 'fuel_consumption_rate': 0.0}",
+      "flight_phase": "descent",
+      "controls": "{'throttle': 0.0, 'elevator': 0.0, 'aileron': 0.0, 'rudder': 0.0}",
+      "performance": "{'flight_time': 0.4400000000000002, 'distance_traveled': 21.999911308290912, 'fuel_consumed': 0.00023749534866883472}",
+      "simulation_time": 2.2262532711029053
+    },
+    {
+      "timestamp": 0.45000000000000023,
+      "position": "{'latitude': 0.00020234652440953316, 'longitude': 0.0, 'altitude': 19998.99173467571}",
+      "velocity": "{'airspeed': 50.19123258325603, 'ground_speed': 49.99956302085419, 'heading': 0.0}",
+      "attitude": "{'roll': 0.0, 'pitch': 0.0, 'yaw': 0.0}",
+      "energy": "{'total_energy': 19981908462.832355, 'fuel_remaining': 99999.99976250465, 'fuel_consumption_rate': 0.0}",
+      "flight_phase": "descent",
+      "controls": "{'throttle': 0.0, 'elevator': 0.0, 'aileron': 0.0, 'rudder': 0.0}",
+      "performance": "{'flight_time': 0.45000000000000023, 'distance_traveled': 22.499906938499453, 'fuel_consumed': 0.00023749534866883472}",
+      "simulation_time": 2.3192903995513916
+    },
+    {
+      "timestamp": 0.46000000000000024,
+      "position": "{'latitude': 0.00020684309213611301, 'longitude': 0.0, 'altitude': 19998.946940133443}",
+      "velocity": "{'airspeed': 50.199807723358624, 'ground_speed': 49.99955185093339, 'heading': 0.0}",
+      "attitude": "{'roll': 0.0, 'pitch': 0.0, 'yaw': 0.0}",
+      "energy": "{'total_energy': 19981907551.947166, 'fuel_remaining': 99999.99976250465, 'fuel_consumption_rate': 0.0}",
+      "flight_phase": "descent",
+      "controls": "{'throttle': 0.0, 'elevator': 0.0, 'aileron': 0.0, 'rudder': 0.0}",
+      "performance": "{'flight_time': 0.46000000000000024, 'distance_traveled': 22.999902457008787, 'fuel_consumed': 0.00023749534866883472}",
+      "simulation_time": 2.3273043632507324
+    },
+    {
+      "timestamp": 0.47000000000000025,
+      "position": "{'latitude': 0.0002113396588525581, 'longitude': 0.0, 'altitude': 19998.9011729251}",
+      "velocity": "{'airspeed': 50.20856934508635, 'ground_speed': 49.9995406187476, 'heading': 0.0}",
+      "attitude": "{'roll': 0.0, 'pitch': 0.0, 'yaw': 0.0}",
+      "energy": "{'total_energy': 19981906630.399246, 'fuel_remaining': 99999.99976250465, 'fuel_consumption_rate': 0.0}",
+      "flight_phase": "descent",
+      "controls": "{'throttle': 0.0, 'elevator': 0.0, 'aileron': 0.0, 'rudder': 0.0}",
+      "performance": "{'flight_time': 0.47000000000000025, 'distance_traveled': 23.499897863196264, 'fuel_consumed': 0.00023749534866883472}",
+      "simulation_time": 2.4197933673858643
+    },
+    {
+      "timestamp": 0.48000000000000026,
+      "position": "{'latitude': 0.00021583622455314486, 'longitude': 0.0, 'altitude': 19998.854433099063}",
+      "velocity": "{'airspeed': 50.21751732107125, 'ground_speed': 49.99952932291837, 'heading': 0.0}",
+      "attitude": "{'roll': 0.0, 'pitch': 0.0, 'yaw': 0.0}",
+      "energy": "{'total_energy': 19981905698.08539, 'fuel_remaining': 99999.99976250465, 'fuel_consumption_rate': 0.0}",
+      "flight_phase": "descent",
+      "controls": "{'throttle': 0.0, 'elevator': 0.0, 'aileron': 0.0, 'rudder': 0.0}",
+      "performance": "{'flight_time': 0.48000000000000026, 'distance_traveled': 23.999893156425447, 'fuel_consumed': 0.00023749534866883472}",
+      "simulation_time": 2.428314685821533
+    },
+    {
+      "timestamp": 0.49000000000000027,
+      "position": "{'latitude': 0.00022033278923202568, 'longitude': 0.0, 'altitude': 19998.80672070375}",
+      "velocity": "{'airspeed': 50.22665152193043, 'ground_speed': 49.999517962066534, 'heading': 0.0}",
+      "attitude": "{'roll': 0.0, 'pitch': 0.0, 'yaw': 0.0}",
+      "energy": "{'total_energy': 19981904754.902267, 'fuel_remaining': 99999.99976250465, 'fuel_consumption_rate': 0.0}",
+      "flight_phase": "descent",
+      "controls": "{'throttle': 0.0, 'elevator': 0.0, 'aileron': 0.0, 'rudder': 0.0}",
+      "performance": "{'flight_time': 0.49000000000000027, 'distance_traveled': 24.499888336046112, 'fuel_consumed': 0.00023749534866883472}",
+      "simulation_time": 2.520819664001465
+    },
+    {
+      "timestamp": 0.5000000000000002,
+      "position": "{'latitude': 0.00022482935288322883, 'longitude': 0.0, 'altitude': 19998.758035787603}",
+      "velocity": "{'airspeed': 50.235971816271956, 'ground_speed': 49.999506534812156, 'heading': 0.0}",
+      "attitude": "{'roll': 0.0, 'pitch': 0.0, 'yaw': 0.0}",
+      "energy": "{'total_energy': 19981903800.74642, 'fuel_remaining': 99999.99976250465, 'fuel_consumption_rate': 0.0}",
+      "flight_phase": "descent",
+      "controls": "{'throttle': 0.0, 'elevator': 0.0, 'aileron': 0.0, 'rudder': 0.0}",
+      "performance": "{'flight_time': 0.5000000000000002, 'distance_traveled': 24.999883401394232, 'fuel_consumed': 0.00023749534866883472}",
+      "simulation_time": 2.5298268795013428
+    },
+    {
+      "timestamp": 0.5100000000000002,
+      "position": "{'latitude': 0.0002293259155006584, 'longitude': 0.0, 'altitude': 19998.708378399107}",
+      "velocity": "{'airspeed': 50.24547807070083, 'ground_speed': 49.99949503977453, 'heading': 0.0}",
+      "attitude": "{'roll': 0.0, 'pitch': 0.0, 'yaw': 0.0}",
+      "energy": "{'total_energy': 19981902835.514267, 'fuel_remaining': 99999.99976250465, 'fuel_consumption_rate': 0.0}",
+      "flight_phase": "descent",
+      "controls": "{'throttle': 0.0, 'elevator': 0.0, 'aileron': 0.0, 'rudder': 0.0}",
+      "performance": "{'flight_time': 0.5100000000000002, 'distance_traveled': 25.499878351791978, 'fuel_consumed': 0.00023749534866883472}",
+      "simulation_time": 2.621508836746216
+    },
+    {
+      "timestamp": 0.5200000000000002,
+      "position": "{'latitude': 0.00023382247707809422, 'longitude': 0.0, 'altitude': 19998.65774858678}",
+      "velocity": "{'airspeed': 50.255170149825034, 'ground_speed': 49.99948347557215, 'heading': 0.0}",
+      "attitude": "{'roll': 0.0, 'pitch': 0.0, 'yaw': 0.0}",
+      "energy": "{'total_energy': 19981901859.102093, 'fuel_remaining': 99999.99976250465, 'fuel_consumption_rate': 0.0}",
+      "flight_phase": "descent",
+      "controls": "{'throttle': 0.0, 'elevator': 0.0, 'aileron': 0.0, 'rudder': 0.0}",
+      "performance": "{'flight_time': 0.5200000000000002, 'distance_traveled': 25.9998731865477, 'fuel_consumed': 0.00023749534866883472}",
+      "simulation_time": 2.630828380584717
+    },
+    {
+      "timestamp": 0.5300000000000002,
+      "position": "{'latitude': 0.00023831903760919193, 'longitude': 0.0, 'altitude': 19998.60614639917}",
+      "velocity": "{'airspeed': 50.26504791626181, 'ground_speed': 49.99947184082269, 'heading': 0.0}",
+      "attitude": "{'roll': 0.0, 'pitch': 0.0, 'yaw': 0.0}",
+      "energy": "{'total_energy': 19981900871.40605, 'fuel_remaining': 99999.99976250465, 'fuel_consumption_rate': 0.0}",
+      "flight_phase": "descent",
+      "controls": "{'throttle': 0.0, 'elevator': 0.0, 'aileron': 0.0, 'rudder': 0.0}",
+      "performance": "{'flight_time': 0.5300000000000002, 'distance_traveled': 26.499867904955927, 'fuel_consumed': 0.00023749534866883472}",
+      "simulation_time": 2.722475051879883
+    },
+    {
+      "timestamp": 0.5400000000000003,
+      "position": "{'latitude': 0.00024281559708748263, 'longitude': 0.0, 'altitude': 19998.55357188486}",
+      "velocity": "{'airspeed': 50.27511123064384, 'ground_speed': 49.99946013414301, 'heading': 0.0}",
+      "attitude": "{'roll': 0.0, 'pitch': 0.0, 'yaw': 0.0}",
+      "energy": "{'total_energy': 19981899872.322147, 'fuel_remaining': 99999.99976250465, 'fuel_consumption_rate': 0.0}",
+      "flight_phase": "descent",
+      "controls": "{'throttle': 0.0, 'elevator': 0.0, 'aileron': 0.0, 'rudder': 0.0}",
+      "performance": "{'flight_time': 0.5400000000000003, 'distance_traveled': 26.999862506297358, 'fuel_consumed': 0.00023749534866883472}",
+      "simulation_time": 2.7315831184387207
+    },
+    {
+      "timestamp": 0.5500000000000003,
+      "position": "{'latitude': 0.00024731215550637304, 'longitude': 0.0, 'altitude': 19998.500025092475}",
+      "velocity": "{'airspeed': 50.28535995162575, 'ground_speed': 49.999448354149095, 'heading': 0.0}",
+      "attitude": "{'roll': 0.0, 'pitch': 0.0, 'yaw': 0.0}",
+      "energy": "{'total_energy': 19981898861.746254, 'fuel_remaining': 99999.99976250465, 'fuel_consumption_rate': 0.0}",
+      "flight_phase": "descent",
+      "controls": "{'throttle': 0.0, 'elevator': 0.0, 'aileron': 0.0, 'rudder': 0.0}",
+      "performance": "{'flight_time': 0.5500000000000003, 'distance_traveled': 27.49985698983885, 'fuel_consumed': 0.00023749534866883472}",
+      "simulation_time": 2.8232076168060303
+    },
+    {
+      "timestamp": 0.5600000000000003,
+      "position": "{'latitude': 0.00025180871285914526, 'longitude': 0.0, 'altitude': 19998.445506070675}",
+      "velocity": "{'airspeed': 50.29579393589048, 'ground_speed': 49.999436499456074, 'heading': 0.0}",
+      "attitude": "{'roll': 0.0, 'pitch': 0.0, 'yaw': 0.0}",
+      "energy": "{'total_energy': 19981897839.574104, 'fuel_remaining': 99999.99976250465, 'fuel_consumption_rate': 0.0}",
+      "flight_phase": "descent",
+      "controls": "{'throttle': 0.0, 'elevator': 0.0, 'aileron': 0.0, 'rudder': 0.0}",
+      "performance": "{'flight_time': 0.5600000000000003, 'distance_traveled': 27.99985135483341, 'fuel_consumed': 0.00023749534866883472}",
+      "simulation_time": 2.8327205181121826
+    },
+    {
+      "timestamp": 0.5700000000000003,
+      "position": "{'latitude': 0.0002563052691389569, 'longitude': 0.0, 'altitude': 19998.39001486816}",
+      "velocity": "{'airspeed': 50.30641303815597, 'ground_speed': 49.99942456867817, 'heading': 0.0}",
+      "attitude": "{'roll': 0.0, 'pitch': 0.0, 'yaw': 0.0}",
+      "energy": "{'total_energy': 19981896805.70128, 'fuel_remaining': 99999.99976250465, 'fuel_consumption_rate': 0.0}",
+      "flight_phase": "descent",
+      "controls": "{'throttle': 0.0, 'elevator': 0.0, 'aileron': 0.0, 'rudder': 0.0}",
+      "performance": "{'flight_time': 0.5700000000000003, 'distance_traveled': 28.499845600520192, 'fuel_consumed': 0.00023749534866883472}",
+      "simulation_time": 2.9236128330230713
+    },
+    {
+      "timestamp": 0.5800000000000003,
+      "position": "{'latitude': 0.0002608018243388407, 'longitude': 0.0, 'altitude': 19998.333551533662}",
+      "velocity": "{'airspeed': 50.31721711118179, 'ground_speed': 49.999412560428716, 'heading': 0.0}",
+      "attitude": "{'roll': 0.0, 'pitch': 0.0, 'yaw': 0.0}",
+      "energy": "{'total_energy': 19981895760.023205, 'fuel_remaining': 99999.99976250465, 'fuel_consumption_rate': 0.0}",
+      "flight_phase": "descent",
+      "controls": "{'throttle': 0.0, 'elevator': 0.0, 'aileron': 0.0, 'rudder': 0.0}",
+      "performance": "{'flight_time': 0.5800000000000003, 'distance_traveled': 28.99983972612448, 'fuel_consumed': 0.00023749534866883472}",
+      "simulation_time": 2.933619499206543
+    }
+  ],
+  "network_data": [
+    "ERROR: float() argument must be a string or a real number, not 'Mock'",
+    "ERROR: float() argument must be a string or a real number, not 'Mock'",
+    "ERROR: float() argument must be a string or a real number, not 'Mock'",
+    "ERROR: float() argument must be a string or a real number, not 'Mock'",
+    "ERROR: float() argument must be a string or a real number, not 'Mock'",
+    "ERROR: float() argument must be a string or a real number, not 'Mock'",
+    "ERROR: float() argument must be a string or a real number, not 'Mock'",
+    "ERROR: float() argument must be a string or a real number, not 'Mock'",
+    "ERROR: float() argument must be a string or a real number, not 'Mock'",
+    "ERROR: float() argument must be a string or a real number, not 'Mock'",
+    "ERROR: float() argument must be a string or a real number, not 'Mock'",
+    "ERROR: float() argument must be a string or a real number, not 'Mock'",
+    "ERROR: float() argument must be a string or a real number, not 'Mock'",
+    "ERROR: float() argument must be a string or a real number, not 'Mock'",
+    "ERROR: float() argument must be a string or a real number, not 'Mock'",
+    "ERROR: float() argument must be a string or a real number, not 'Mock'",
+    "ERROR: float() argument must be a string or a real number, not 'Mock'",
+    "ERROR: float() argument must be a string or a real number, not 'Mock'",
+    "ERROR: float() argument must be a string or a real number, not 'Mock'",
+    "ERROR: float() argument must be a string or a real number, not 'Mock'",
+    "ERROR: float() argument must be a string or a real number, not 'Mock'",
+    "ERROR: float() argument must be a string or a real number, not 'Mock'",
+    "ERROR: float() argument must be a string or a real number, not 'Mock'",
+    "ERROR: float() argument must be a string or a real number, not 'Mock'",
+    "ERROR: float() argument must be a string or a real number, not 'Mock'",
+    "ERROR: float() argument must be a string or a real number, not 'Mock'",
+    "ERROR: float() argument must be a string or a real number, not 'Mock'",
+    "ERROR: float() argument must be a string or a real number, not 'Mock'",
+    "ERROR: float() argument must be a string or a real number, not 'Mock'",
+    "ERROR: float() argument must be a string or a real number, not 'Mock'",
+    "ERROR: float() argument must be a string or a real number, not 'Mock'",
+    "ERROR: float() argument must be a string or a real number, not 'Mock'",
+    "ERROR: float() argument must be a string or a real number, not 'Mock'",
+    "ERROR: float() argument must be a string or a real number, not 'Mock'",
+    "ERROR: float() argument must be a string or a real number, not 'Mock'",
+    "ERROR: float() argument must be a string or a real number, not 'Mock'",
+    "ERROR: float() argument must be a string or a real number, not 'Mock'",
+    "ERROR: float() argument must be a string or a real number, not 'Mock'",
+    "ERROR: float() argument must be a string or a real number, not 'Mock'",
+    "ERROR: float() argument must be a string or a real number, not 'Mock'",
+    "ERROR: float() argument must be a string or a real number, not 'Mock'",
+    "ERROR: float() argument must be a string or a real number, not 'Mock'",
+    "ERROR: float() argument must be a string or a real number, not 'Mock'",
+    "ERROR: float() argument must be a string or a real number, not 'Mock'",
+    "ERROR: float() argument must be a string or a real number, not 'Mock'",
+    "ERROR: float() argument must be a string or a real number, not 'Mock'",
+    "ERROR: float() argument must be a string or a real number, not 'Mock'",
+    "ERROR: float() argument must be a string or a real number, not 'Mock'",
+    "ERROR: float() argument must be a string or a real number, not 'Mock'",
+    "ERROR: float() argument must be a string or a real number, not 'Mock'",
+    "ERROR: float() argument must be a string or a real number, not 'Mock'",
+    "ERROR: float() argument must be a string or a real number, not 'Mock'",
+    "ERROR: float() argument must be a string or a real number, not 'Mock'",
+    "ERROR: float() argument must be a string or a real number, not 'Mock'",
+    "ERROR: float() argument must be a string or a real number, not 'Mock'",
+    "ERROR: float() argument must be a string or a real number, not 'Mock'",
+    "ERROR: float() argument must be a string or a real number, not 'Mock'",
+    "ERROR: float() argument must be a string or a real number, not 'Mock'"
+  ],
+  "quantum_data": [
+    {
+      "timestamp": 0.10113334655761719,
+      "handshake_status": "{'mock': True}"
+    },
+    {
+      "timestamp": 0.10261273384094238,
+      "handshake_status": "{'mock': True}"
+    },
+    {
+      "timestamp": 0.20231413841247559,
+      "handshake_status": "{'mock': True}"
+    },
+    {
+      "timestamp": 0.20363593101501465,
+      "handshake_status": "{'mock': True}"
+    },
+    {
+      "timestamp": 0.30319929122924805,
+      "handshake_status": "{'mock': True}"
+    },
+    {
+      "timestamp": 0.3045618534088135,
+      "handshake_status": "{'mock': True}"
+    },
+    {
+      "timestamp": 0.4041595458984375,
+      "handshake_status": "{'mock': True}"
+    },
+    {
+      "timestamp": 0.4056110382080078,
+      "handshake_status": "{'mock': True}"
+    },
+    {
+      "timestamp": 0.5048961639404297,
+      "handshake_status": "{'mock': True}"
+    },
+    {
+      "timestamp": 0.5069007873535156,
+      "handshake_status": "{'mock': True}"
+    },
+    {
+      "timestamp": 0.6053588390350342,
+      "handshake_status": "{'mock': True}"
+    },
+    {
+      "timestamp": 0.6078760623931885,
+      "handshake_status": "{'mock': True}"
+    },
+    {
+      "timestamp": 0.7059698104858398,
+      "handshake_status": "{'mock': True}"
+    },
+    {
+      "timestamp": 0.7086193561553955,
+      "handshake_status": "{'mock': True}"
+    },
+    {
+      "timestamp": 0.8065557479858398,
+      "handshake_status": "{'mock': True}"
+    },
+    {
+      "timestamp": 0.8093459606170654,
+      "handshake_status": "{'mock': True}"
+    },
+    {
+      "timestamp": 0.9071571826934814,
+      "handshake_status": "{'mock': True}"
+    },
+    {
+      "timestamp": 0.9104182720184326,
+      "handshake_status": "{'mock': True}"
+    },
+    {
+      "timestamp": 1.0078258514404297,
+      "handshake_status": "{'mock': True}"
+    },
+    {
+      "timestamp": 1.01190185546875,
+      "handshake_status": "{'mock': True}"
+    },
+    {
+      "timestamp": 1.1084866523742676,
+      "handshake_status": "{'mock': True}"
+    },
+    {
+      "timestamp": 1.1130023002624512,
+      "handshake_status": "{'mock': True}"
+    },
+    {
+      "timestamp": 1.2095558643341064,
+      "handshake_status": "{'mock': True}"
+    },
+    {
+      "timestamp": 1.213780403137207,
+      "handshake_status": "{'mock': True}"
+    },
+    {
+      "timestamp": 1.3106141090393066,
+      "handshake_status": "{'mock': True}"
+    },
+    {
+      "timestamp": 1.31512451171875,
+      "handshake_status": "{'mock': True}"
+    },
+    {
+      "timestamp": 1.4116623401641846,
+      "handshake_status": "{'mock': True}"
+    },
+    {
+      "timestamp": 1.4161725044250488,
+      "handshake_status": "{'mock': True}"
+    },
+    {
+      "timestamp": 1.512317180633545,
+      "handshake_status": "{'mock': True}"
+    },
+    {
+      "timestamp": 1.5181005001068115,
+      "handshake_status": "{'mock': True}"
+    },
+    {
+      "timestamp": 1.61314058303833,
+      "handshake_status": "{'mock': True}"
+    },
+    {
+      "timestamp": 1.6191556453704834,
+      "handshake_status": "{'mock': True}"
+    },
+    {
+      "timestamp": 1.7139196395874023,
+      "handshake_status": "{'mock': True}"
+    },
+    {
+      "timestamp": 1.720210075378418,
+      "handshake_status": "{'mock': True}"
+    },
+    {
+      "timestamp": 1.8148000240325928,
+      "handshake_status": "{'mock': True}"
+    },
+    {
+      "timestamp": 1.82088041305542,
+      "handshake_status": "{'mock': True}"
+    },
+    {
+      "timestamp": 1.9156041145324707,
+      "handshake_status": "{'mock': True}"
+    },
+    {
+      "timestamp": 1.9221241474151611,
+      "handshake_status": "{'mock': True}"
+    },
+    {
+      "timestamp": 2.016597032546997,
+      "handshake_status": "{'mock': True}"
+    },
+    {
+      "timestamp": 2.024160385131836,
+      "handshake_status": "{'mock': True}"
+    },
+    {
+      "timestamp": 2.1177730560302734,
+      "handshake_status": "{'mock': True}"
+    },
+    {
+      "timestamp": 2.1252355575561523,
+      "handshake_status": "{'mock': True}"
+    },
+    {
+      "timestamp": 2.2187442779541016,
+      "handshake_status": "{'mock': True}"
+    },
+    {
+      "timestamp": 2.2262532711029053,
+      "handshake_status": "{'mock': True}"
+    },
+    {
+      "timestamp": 2.3192903995513916,
+      "handshake_status": "{'mock': True}"
+    },
+    {
+      "timestamp": 2.3273043632507324,
+      "handshake_status": "{'mock': True}"
+    },
+    {
+      "timestamp": 2.4197933673858643,
+      "handshake_status": "{'mock': True}"
+    },
+    {
+      "timestamp": 2.428314685821533,
+      "handshake_status": "{'mock': True}"
+    },
+    {
+      "timestamp": 2.520819664001465,
+      "handshake_status": "{'mock': True}"
+    },
+    {
+      "timestamp": 2.5298268795013428,
+      "handshake_status": "{'mock': True}"
+    },
+    {
+      "timestamp": 2.621508836746216,
+      "handshake_status": "{'mock': True}"
+    },
+    {
+      "timestamp": 2.630828380584717,
+      "handshake_status": "{'mock': True}"
+    },
+    {
+      "timestamp": 2.722475051879883,
+      "handshake_status": "{'mock': True}"
+    },
+    {
+      "timestamp": 2.7315831184387207,
+      "handshake_status": "{'mock': True}"
+    },
+    {
+      "timestamp": 2.8232076168060303,
+      "handshake_status": "{'mock': True}"
+    },
+    {
+      "timestamp": 2.8327205181121826,
+      "handshake_status": "{'mock': True}"
+    },
+    {
+      "timestamp": 2.9236128330230713,
+      "handshake_status": "{'mock': True}"
+    },
+    {
+      "timestamp": 2.933619499206543,
+      "handshake_status": "{'mock': True}"
+    }
+  ]
+}

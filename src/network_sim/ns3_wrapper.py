@@ -826,15 +826,15 @@ int main (int argc, char *argv[])
     
     def load_configuration(self, filename: str):
         """Load network configuration from file"""
-        with open(filename, 'r') as f:
-            config = json.load(f)
-        
+            with open(filename, 'r') as f:
+                config = json.load(f)
+            
         # Clear existing configuration
         self.nodes.clear()
         self.links.clear()
         self.jammers.clear()
         
-        # Load nodes
+            # Load nodes
         for node_id, node_data in config['nodes'].items():
             self.add_node(NodeConfig(
                 node_id=node_id,
@@ -846,8 +846,8 @@ int main (int argc, char *argv[])
                 data_rate=node_data['data_rate'],
                 routing_protocol=RoutingProtocol(node_data['routing_protocol'])
             ))
-        
-        # Load links
+            
+            # Load links
         for link_data in config['links']:
             self.add_link(LinkConfig(
                 source_id=link_data['source_id'],
@@ -872,7 +872,7 @@ int main (int argc, char *argv[])
             ))
         
         self.simulation_time = config.get('simulation_time', 100.0)
-        logging.info(f"Configuration loaded from {filename}")
+            logging.info(f"Configuration loaded from {filename}")
     
     def get_simulation_statistics(self) -> Dict[str, Any]:
         """Get comprehensive simulation statistics"""
