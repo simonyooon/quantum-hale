@@ -1,12 +1,137 @@
-# Simulation configuration parameters
+# Simulation Parameters Configuration
+# ==================================
+#
+# This file contains configuration parameters for the Quantum HALE Drone simulation.
+# Parameters are organized by component and can be adjusted for different scenarios.
+#
+# Author: Quantum HALE Development Team
+# License: MIT
 
+# General simulation parameters
+# ============================
 simulation:
   name: "quantum_hale_baseline"
-  duration: 3600  # seconds
-  timestep: 0.1   # seconds
-  real_time_factor: 1.0  # 1.0 = real-time, 2.0 = 2x speed, 0.5 = half speed
+  duration: 3600.0          # Simulation duration in seconds (1 hour)
+  timestep: 0.01            # Simulation time step in seconds
+  real_time_factor: 1.0     # Real-time factor (1.0 = real-time)
+  num_drones: 3             # Number of HALE drones in simulation
   random_seed: 42
   output_directory: "data/simulation_results"
+  log_level: "INFO"
+
+# Flight simulation parameters
+# ===========================
+flight:
+  aircraft_type: "zephyr_s"  # Aircraft type from aircraft_parameters.yaml
+  flight_mode: "auto"        # manual, altitude_hold, heading_hold, auto
+  initial_altitude: 20000.0  # Initial altitude in meters
+  initial_speed: 50.0        # Initial airspeed in m/s
+  initial_heading: 0.0       # Initial heading in degrees
+  
+  # Flight control parameters
+  altitude_setpoint: 20000.0 # Target altitude in meters
+  speed_setpoint: 50.0       # Target airspeed in m/s
+  heading_setpoint: 0.0      # Target heading in degrees
+  
+  # Environmental conditions
+  wind_conditions: [5.0, 2.0, 0.0]  # Wind velocity [north, east, up] in m/s
+  turbulence_intensity: 0.1  # Turbulence intensity (0.0-1.0)
+  
+  # Flight envelope limits
+  max_altitude: 70000.0      # Maximum altitude in meters
+  min_altitude: 100.0        # Minimum safe altitude in meters
+  max_speed: 35.0            # Maximum airspeed in m/s
+  min_speed: 14.0            # Minimum airspeed in m/s
+
+# Network simulation parameters
+# ============================
+network:
+  topology_type: "mesh"      # mesh, star, ring
+  protocol: "aodv"           # aodv, olsr, dsdv
+  num_nodes: 5               # Number of network nodes
+  transmission_range: 50000  # Transmission range in meters
+  data_rate: 1000000         # Data rate in bits per second
+  
+  # Ground stations
+  ground_stations:
+    - [40.7128, -74.0060]    # New York
+    - [51.5074, -0.1278]     # London
+    - [35.6762, 139.6503]    # Tokyo
+  
+  # Jamming simulation
+  jamming_enabled: false     # Enable jamming simulation
+  jamming_sources:           # Jamming source locations
+    # - [45.0, -75.0, 0.0]   # Example jamming source
+    # - [50.0, -80.0, 0.0]   # Another jamming source
+
+# Quantum communication parameters
+# ===============================
+quantum:
+  qkd_enabled: true          # Enable QKD simulation
+  pqc_enabled: true          # Enable post-quantum cryptography
+  key_length: 256            # Quantum key length in bits
+  key_rate: 1000             # Key generation rate in bits per second
+  error_rate: 0.01           # Quantum bit error rate
+  
+  # Quantum hardware parameters
+  photon_detection_efficiency: 0.8
+  dark_count_rate: 100       # Dark counts per second
+  coherence_time: 1e-6       # Photon coherence time in seconds
+
+# Autonomy and mission parameters
+# ==============================
+autonomy:
+  mission_type: "surveillance"  # surveillance, communication, research
+  waypoints:                    # Mission waypoints [lat, lon, alt]
+    - [40.7128, -74.0060, 20000.0]  # New York
+    - [51.5074, -0.1278, 20000.0]   # London
+    - [35.6762, 139.6503, 20000.0]  # Tokyo
+    - [40.7128, -74.0060, 20000.0]  # Return to start
+  
+  # Autonomous behavior parameters
+  collision_avoidance: true   # Enable collision avoidance
+  energy_management: true     # Enable energy management
+  weather_avoidance: true     # Enable weather avoidance
+  
+  # Decision making parameters
+  decision_frequency: 1.0     # Decision making frequency in Hz
+  planning_horizon: 300.0     # Planning horizon in seconds
+
+# Performance monitoring parameters
+# ================================
+performance:
+  metrics_enabled: true       # Enable performance metrics collection
+  sampling_rate: 10.0         # Metrics sampling rate in Hz
+  storage_interval: 60.0      # Data storage interval in seconds
+  
+  # Performance thresholds
+  max_cpu_usage: 80.0         # Maximum CPU usage percentage
+  max_memory_usage: 80.0      # Maximum memory usage percentage
+  max_latency: 100.0          # Maximum network latency in ms
+
+# Visualization parameters
+# =======================
+visualization:
+  enabled: false              # Enable real-time visualization
+  update_rate: 10.0           # Visualization update rate in Hz
+  show_trajectories: true     # Show flight trajectories
+  show_network: true          # Show network topology
+  show_quantum: true          # Show quantum communication
+
+# Testing and validation parameters
+# ================================
+testing:
+  test_mode: false            # Enable test mode
+  validation_enabled: true    # Enable validation checks
+  error_tolerance: 0.01       # Error tolerance for validation
+  
+  # Test scenarios
+  test_scenarios:
+    - "basic_flight"
+    - "network_communication"
+    - "quantum_key_exchange"
+    - "autonomous_navigation"
+    - "emergency_procedures"
 
 environment:
   atmosphere:
@@ -34,11 +159,6 @@ drones:
     battery_capacity: 100000
     payload_weight: 50
 
-ground_stations:
-  - id: "GROUND_001"
-    position: [0, 0, 100]  # x, y, z in meters
-    communication_range: 200000  # meters
-    
 missions:
   - drone_id: "DRONE_001"
     type: "isr_patrol"

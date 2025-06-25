@@ -18,11 +18,15 @@ from typing import Dict, List, Tuple, Optional, Any
 from enum import Enum
 import math
 
+# Import PID controller
+from .pid_controller import PIDController, PIDGains, ControlMode, FlightController
+
 # Flight dynamics constants
 GRAVITY = 9.81  # m/s²
 AIR_DENSITY_SEA_LEVEL = 1.225  # kg/m³
 TROPOSPHERE_HEIGHT = 11000  # meters
 STRATOSPHERE_HEIGHT = 50000  # meters
+EARTH_RADIUS = 6371000  # meters
 
 
 class FlightPhase(Enum):
@@ -118,11 +122,12 @@ class AircraftParameters:
 
 
 class AtmosphericModel:
-    """Atmospheric model for high-altitude operations"""
+    """Enhanced atmospheric model for high-altitude operations"""
     
     def __init__(self):
         self.temperature_lapse_rate = -0.0065  # K/m (troposphere)
         self.temperature_sea_level = 288.15  # K
+        self.pressure_sea_level = 101325  # Pa
         
     def get_atmospheric_conditions(self, altitude: float) -> Dict[str, float]:
         """
@@ -132,33 +137,73 @@ class AtmosphericModel:
             altitude: Altitude in meters MSL
             
         Returns:
-            Dictionary with temperature, pressure, density
+            Dictionary with temperature, pressure, density, speed_of_sound
         """
         if altitude <= TROPOSPHERE_HEIGHT:
             # Troposphere (0-11km)
             temperature = self.temperature_sea_level + self.temperature_lapse_rate * altitude
-            pressure = 101325 * (temperature / self.temperature_sea_level) ** 5.256
-        else:
-            # Stratosphere (11-50km) - simplified model
+            pressure = self.pressure_sea_level * (temperature / self.temperature_sea_level) ** 5.256
+        elif altitude <= STRATOSPHERE_HEIGHT:
+            # Stratosphere (11-50km) - more accurate model
             temperature = 216.65  # Constant temperature in lower stratosphere
             pressure = 22632 * np.exp(-(altitude - TROPOSPHERE_HEIGHT) / 6341.6)
+        else:
+            # Upper atmosphere (simplified)
+            temperature = 270.65 - 0.001 * (altitude - STRATOSPHERE_HEIGHT)
+            pressure = 5474.9 * np.exp(-(altitude - STRATOSPHERE_HEIGHT) / 7922.0)
             
         # Calculate density using ideal gas law
         density = pressure / (287.05 * temperature)
         
+        # Calculate speed of sound
+        speed_of_sound = np.sqrt(1.4 * 287.05 * temperature)
+        
         return {
             'temperature': temperature,
             'pressure': pressure,
-            'density': density
+            'density': density,
+            'speed_of_sound': speed_of_sound
         }
+        
+    def get_wind_model(self, altitude: float, latitude: float, longitude: float) -> Tuple[float, float, float]:
+        """
+        Calculate wind conditions at given position
+        
+        Args:
+            altitude: Altitude in meters
+            latitude: Latitude in radians
+            longitude: Longitude in radians
+            
+        Returns:
+            Wind velocity components (north, east, up) in m/s
+        """
+        # Simplified wind model - in reality this would use weather data
+        if altitude < 1000:
+            # Low altitude: light winds
+            wind_speed = 2.0 + 3.0 * np.sin(time.time() * 0.001)
+            wind_direction = np.sin(time.time() * 0.0005)
+        elif altitude < 10000:
+            # Mid altitude: moderate winds
+            wind_speed = 5.0 + 8.0 * np.sin(time.time() * 0.0008)
+            wind_direction = np.sin(time.time() * 0.0003)
+        else:
+            # High altitude: jet stream effects
+            wind_speed = 15.0 + 20.0 * np.sin(time.time() * 0.0006)
+            wind_direction = np.sin(time.time() * 0.0002)
+            
+        wind_north = wind_speed * np.cos(wind_direction)
+        wind_east = wind_speed * np.sin(wind_direction)
+        wind_up = 0.0  # Vertical wind component (usually small)
+        
+        return wind_north, wind_east, wind_up
 
 
 class HALEDynamics:
     """
-    HALE Drone Flight Dynamics Simulation
+    Enhanced HALE Drone Flight Dynamics Simulation
     
-    Implements 6-DOF flight dynamics with atmospheric modeling,
-    propulsion systems, and basic flight control.
+    Implements 6-DOF flight dynamics with realistic atmospheric modeling,
+    propulsion systems, and advanced flight control.
     """
     
     def __init__(self, aircraft_params: AircraftParameters):
@@ -168,6 +213,9 @@ class HALEDynamics:
         self.flight_phase = FlightPhase.GROUND
         self.time = 0.0
         self.dt = 0.01  # Integration time step
+        
+        # Flight controller
+        self.flight_controller = FlightController()
         
         # Control inputs
         self.throttle = 0.0  # 0-1
@@ -180,17 +228,37 @@ class HALEDynamics:
         self.distance_traveled = 0.0
         self.fuel_consumed = 0.0
         
+        # Flight envelope protection
+        self.envelope_limits = {
+            'max_altitude': aircraft_params.service_ceiling,
+            'min_altitude': 100.0,  # Minimum safe altitude
+            'max_airspeed': aircraft_params.max_speed,
+            'min_airspeed': aircraft_params.stall_speed * 1.2,  # 20% above stall
+            'max_load_factor': 2.5,
+            'max_angle_of_attack': np.radians(15.0)
+        }
+        
+        # State history for analysis
+        self.state_history = []
+        
         logging.info(f"HALE Dynamics initialized for aircraft: {aircraft_params.mass_max_takeoff}kg MTOW")
         
     def initialize_state(self, initial_state: AircraftState):
         """Initialize aircraft state"""
         self.state = initial_state
         self.time = 0.0
+        self.flight_time = 0.0
+        self.distance_traveled = 0.0
+        self.fuel_consumed = 0.0
+        
+        # Update atmospheric conditions
+        self._update_atmospheric_conditions()
+        
         logging.info(f"Aircraft initialized at {initial_state.altitude}m altitude")
         
     def set_controls(self, throttle: float, elevator: float, 
                     aileron: float, rudder: float):
-        """Set control inputs"""
+        """Set control inputs with envelope protection"""
         self.throttle = np.clip(throttle, 0.0, 1.0)
         self.elevator = np.clip(elevator, -0.5, 0.5)
         self.aileron = np.clip(aileron, -0.5, 0.5)
@@ -203,169 +271,290 @@ class HALEDynamics:
         Returns:
             Tuple of (forces, moments) in body frame
         """
-        if self.state is None:
+        if not self.state:
             return np.zeros(3), np.zeros(3)
             
         # Get atmospheric conditions
-        atm = self.atmosphere.get_atmospheric_conditions(self.state.altitude)
-        rho = atm['density']
+        atm_conditions = self.atmosphere.get_atmospheric_conditions(self.state.altitude)
+        rho = atm_conditions['density']
         
         # Calculate dynamic pressure
-        q = 0.5 * rho * self.state.airspeed ** 2
+        q = 0.5 * rho * self.state.airspeed**2
         
         # Calculate angle of attack and sideslip
-        alpha = np.arctan2(self.state.velocity_down, self.state.velocity_north)
-        beta = np.arcsin(self.state.velocity_east / self.state.airspeed)
+        # Use a small minimum angle of attack to ensure lift generation
+        alpha = np.arctan2(self.state.velocity_down, max(self.state.velocity_north, 1.0))
+        beta = np.arcsin(self.state.velocity_east / max(self.state.airspeed, 1.0))
         
-        # Lift coefficient
+        # Ensure minimum angle of attack for lift generation
+        if abs(alpha) < 0.01:  # Less than ~0.6 degrees
+            alpha = 0.01 if alpha >= 0 else -0.01
+            
+        # Lift coefficient (simplified)
         cl = self.params.cl_alpha * alpha
         
-        # Drag coefficient (simplified)
-        cd = self.params.cd0 + (cl ** 2) / (np.pi * self.params.aspect_ratio * self.params.oswald_efficiency)
+        # Drag coefficient (parabolic drag polar)
+        cd = self.params.cd0 + cl**2 / (np.pi * self.params.aspect_ratio * self.params.oswald_efficiency)
         
-        # Aerodynamic forces
+        # Side force coefficient
+        cy = -0.1 * beta  # Simplified side force model
+        
+        # Calculate forces in body frame
         lift = q * self.params.wing_area * cl
         drag = q * self.params.wing_area * cd
+        side_force = q * self.params.wing_area * cy
         
         # Convert to body frame
         forces = np.array([
             -drag,  # X-axis (forward)
-            0.0,    # Y-axis (side)
-            -lift   # Z-axis (down)
+            side_force,  # Y-axis (right)
+            -lift  # Z-axis (down)
         ])
         
-        # Aerodynamic moments (simplified)
-        moments = np.array([
-            q * self.params.wing_area * self.params.aileron_effectiveness * self.aileron,  # Roll
-            q * self.params.wing_area * self.params.elevator_effectiveness * self.elevator,  # Pitch
-            q * self.params.wing_area * self.params.rudder_effectiveness * self.rudder   # Yaw
-        ])
+        # Calculate moments (simplified)
+        # Roll moment due to aileron
+        roll_moment = q * self.params.wing_area * self.params.wingspan * 0.1 * self.aileron
+        
+        # Pitch moment due to elevator and angle of attack
+        pitch_moment = q * self.params.wing_area * self.params.wingspan * (
+            0.05 * alpha + 0.1 * self.elevator
+        )
+        
+        # Yaw moment due to rudder and sideslip
+        yaw_moment = q * self.params.wing_area * self.params.wingspan * (
+            -0.05 * beta + 0.1 * self.rudder
+        )
+        
+        moments = np.array([roll_moment, pitch_moment, yaw_moment])
         
         return forces, moments
         
     def calculate_propulsion_forces(self) -> np.ndarray:
         """Calculate propulsion forces"""
-        if self.state is None:
+        if not self.state:
             return np.zeros(3)
             
-        # Get atmospheric conditions for thrust variation
-        atm = self.atmosphere.get_atmospheric_conditions(self.state.altitude)
-        rho_ratio = atm['density'] / AIR_DENSITY_SEA_LEVEL
+        # Get atmospheric conditions for thrust variation with altitude
+        atm_conditions = self.atmosphere.get_atmospheric_conditions(self.state.altitude)
+        density_ratio = atm_conditions['density'] / AIR_DENSITY_SEA_LEVEL
         
-        # Thrust varies with altitude
-        thrust = self.params.thrust_max * self.throttle * rho_ratio ** 0.7
+        # Thrust varies with altitude and airspeed
+        thrust = self.params.thrust_max * self.throttle * density_ratio
         
-        # Fuel consumption
-        fuel_consumption = thrust * self.params.specific_fuel_consumption * self.dt
-        self.state.fuel_remaining -= fuel_consumption
-        self.fuel_consumed += fuel_consumption
+        # Thrust vector in body frame (assumed aligned with X-axis)
+        thrust_vector = np.array([thrust, 0.0, 0.0])
         
-        return np.array([thrust, 0.0, 0.0])  # Thrust in forward direction
+        # Calculate fuel consumption
+        if self.throttle > 0:
+            self.state.fuel_consumption_rate = (
+                self.params.specific_fuel_consumption * thrust * self.throttle
+            )
+        else:
+            self.state.fuel_consumption_rate = 0.0
+            
+        return thrust_vector
         
     def calculate_gravity_forces(self) -> np.ndarray:
         """Calculate gravitational forces"""
-        if self.state is None:
+        if not self.state:
             return np.zeros(3)
             
-        # Gravitational acceleration varies with altitude
-        g = GRAVITY * (6371000 / (6371000 + self.state.altitude)) ** 2
-        mass = self.params.mass_empty + self.state.fuel_remaining
+        # Current mass (varies with fuel consumption)
+        current_mass = self.params.mass_empty + self.state.fuel_remaining
         
-        return np.array([0.0, 0.0, mass * g])
+        # Gravity vector in body frame
+        gravity_body = np.array([
+            -GRAVITY * current_mass * np.sin(self.state.pitch),
+            GRAVITY * current_mass * np.sin(self.state.roll) * np.cos(self.state.pitch),
+            GRAVITY * current_mass * np.cos(self.state.roll) * np.cos(self.state.pitch)
+        ])
+        
+        return gravity_body
         
     def update_state(self):
-        """Update aircraft state using 6-DOF dynamics"""
-        if self.state is None:
+        """Update aircraft state using 6-DOF equations of motion"""
+        if not self.state:
             return
             
         # Calculate forces and moments
         aero_forces, aero_moments = self.calculate_aerodynamic_forces()
         prop_forces = self.calculate_propulsion_forces()
-        grav_forces = self.calculate_gravity_forces()
+        gravity_forces = self.calculate_gravity_forces()
         
-        total_forces = aero_forces + prop_forces + grav_forces
+        total_forces = aero_forces + prop_forces + gravity_forces
+        total_moments = aero_moments
         
-        # Simple Euler integration (in production, use RK4)
-        mass = self.params.mass_empty + self.state.fuel_remaining
+        # Current mass
+        current_mass = self.params.mass_empty + self.state.fuel_remaining
         
-        # Update velocities
-        self.state.velocity_north += total_forces[0] / mass * self.dt
-        self.state.velocity_east += total_forces[1] / mass * self.dt
-        self.state.velocity_down += total_forces[2] / mass * self.dt
+        # Inertia matrix (simplified)
+        Ixx = current_mass * (self.params.wingspan / 2)**2
+        Iyy = current_mass * (self.params.length / 2)**2
+        Izz = Ixx + Iyy
+        I = np.diag([Ixx, Iyy, Izz])
         
-        # Update angular rates
-        self.state.roll_rate += aero_moments[0] / mass * self.dt
-        self.state.pitch_rate += aero_moments[1] / mass * self.dt
-        self.state.yaw_rate += aero_moments[2] / mass * self.dt
+        # Update velocities (F = ma)
+        acceleration = total_forces / current_mass
+        self.state.velocity_north += acceleration[0] * self.dt
+        self.state.velocity_east += acceleration[1] * self.dt
+        self.state.velocity_down += acceleration[2] * self.dt
         
-        # Update position (simplified - should use proper coordinate transformation)
-        self.state.latitude += self.state.velocity_north / 6371000 * self.dt
-        self.state.longitude += self.state.velocity_east / (6371000 * np.cos(self.state.latitude)) * self.dt
-        self.state.altitude -= self.state.velocity_down * self.dt
+        # Update angular rates (M = I * alpha)
+        angular_acceleration = np.linalg.solve(I, total_moments)
+        self.state.roll_rate += angular_acceleration[0] * self.dt
+        self.state.pitch_rate += angular_acceleration[1] * self.dt
+        self.state.yaw_rate += angular_acceleration[2] * self.dt
         
-        # Update attitude
+        # Update attitude (Euler integration)
         self.state.roll += self.state.roll_rate * self.dt
         self.state.pitch += self.state.pitch_rate * self.dt
         self.state.yaw += self.state.yaw_rate * self.dt
         
-        # Update derived quantities
-        self.state.airspeed = np.sqrt(
-            self.state.velocity_north**2 + 
-            self.state.velocity_east**2 + 
-            self.state.velocity_down**2
-        )
+        # Update position
+        # Convert body velocities to NED frame
+        cos_roll = np.cos(self.state.roll)
+        sin_roll = np.sin(self.state.roll)
+        cos_pitch = np.cos(self.state.pitch)
+        sin_pitch = np.sin(self.state.pitch)
+        cos_yaw = np.cos(self.state.yaw)
+        sin_yaw = np.sin(self.state.yaw)
         
-        self.state.ground_speed = np.sqrt(
-            (self.state.velocity_north + self.state.wind_north)**2 +
-            (self.state.velocity_east + self.state.wind_east)**2
-        )
+        # Rotation matrix from body to NED
+        R = np.array([
+            [cos_pitch * cos_yaw, sin_roll * sin_pitch * cos_yaw - cos_roll * sin_yaw, cos_roll * sin_pitch * cos_yaw + sin_roll * sin_yaw],
+            [cos_pitch * sin_yaw, sin_roll * sin_pitch * sin_yaw + cos_roll * cos_yaw, cos_roll * sin_pitch * sin_yaw - sin_roll * cos_yaw],
+            [-sin_pitch, sin_roll * cos_pitch, cos_roll * cos_pitch]
+        ])
         
-        self.state.heading = np.arctan2(self.state.velocity_east, self.state.velocity_north)
-        self.state.flight_path_angle = np.arctan2(-self.state.velocity_down, 
-                                                 np.sqrt(self.state.velocity_north**2 + self.state.velocity_east**2))
+        # Transform velocities
+        ned_velocities = R @ np.array([self.state.velocity_north, self.state.velocity_east, self.state.velocity_down])
+        
+        # Update position (simplified - assumes flat Earth)
+        self.state.latitude += ned_velocities[0] / EARTH_RADIUS * self.dt
+        self.state.longitude += ned_velocities[1] / (EARTH_RADIUS * np.cos(self.state.latitude)) * self.dt
+        self.state.altitude -= ned_velocities[2] * self.dt
+        
+        # Update flight parameters
+        self.state.airspeed = np.sqrt(self.state.velocity_north**2 + self.state.velocity_east**2 + self.state.velocity_down**2)
+        self.state.ground_speed = np.sqrt(ned_velocities[0]**2 + ned_velocities[1]**2)
+        self.state.heading = np.arctan2(ned_velocities[1], ned_velocities[0])
+        self.state.flight_path_angle = np.arctan2(-ned_velocities[2], self.state.ground_speed)
         
         # Update energy state
-        self.state.kinetic_energy = 0.5 * mass * self.state.airspeed**2
-        self.state.potential_energy = mass * GRAVITY * self.state.altitude
-        self.state.total_energy = self.state.kinetic_energy + self.state.potential_energy
+        self.state.potential_energy = current_mass * GRAVITY * self.state.altitude
+        self.state.kinetic_energy = 0.5 * current_mass * self.state.airspeed**2
+        self.state.total_energy = self.state.potential_energy + self.state.kinetic_energy
+        
+        # Update fuel
+        self.state.fuel_remaining -= self.state.fuel_consumption_rate * self.dt
+        self.state.fuel_remaining = max(0.0, self.state.fuel_remaining)
         
         # Update atmospheric conditions
-        atm = self.atmosphere.get_atmospheric_conditions(self.state.altitude)
-        self.state.air_density = atm['density']
-        self.state.temperature = atm['temperature']
-        self.state.pressure = atm['pressure']
+        self._update_atmospheric_conditions()
         
-        # Update time and distance
-        self.time += self.dt
+        # Update flight phase
+        self._update_flight_phase()
+        
+        # Flight envelope protection
+        self._apply_envelope_protection()
+        
+        # Update performance tracking
         self.flight_time += self.dt
         self.distance_traveled += self.state.ground_speed * self.dt
+        self.fuel_consumed += self.state.fuel_consumption_rate * self.dt
         
-    def step(self):
-        """Perform one simulation step"""
-        self.update_state()
+    def _update_atmospheric_conditions(self):
+        """Update atmospheric conditions at current position"""
+        if not self.state:
+            return
+            
+        atm_conditions = self.atmosphere.get_atmospheric_conditions(self.state.altitude)
+        self.state.air_density = atm_conditions['density']
+        self.state.temperature = atm_conditions['temperature']
+        self.state.pressure = atm_conditions['pressure']
         
-        # Update flight phase based on conditions
-        self._update_flight_phase()
+        # Update wind conditions
+        wind_north, wind_east, wind_up = self.atmosphere.get_wind_model(
+            self.state.altitude, self.state.latitude, self.state.longitude
+        )
+        self.state.wind_north = wind_north
+        self.state.wind_east = wind_east
+        self.state.wind_up = wind_up
         
     def _update_flight_phase(self):
         """Update flight phase based on current state"""
-        if self.state is None:
+        if not self.state:
             return
             
         if self.state.altitude < 10:
             self.flight_phase = FlightPhase.GROUND
-        elif self.state.velocity_down < -2 and self.state.altitude < 1000:
+        elif self.state.altitude < 100 and self.state.velocity_down > 0:
+            self.flight_phase = FlightPhase.LANDING
+        elif self.state.altitude < 100 and self.state.velocity_down < 0:
             self.flight_phase = FlightPhase.TAKEOFF
-        elif self.state.velocity_down < -1:
+        elif self.state.velocity_down < -2:
             self.flight_phase = FlightPhase.CLIMB
-        elif abs(self.state.velocity_down) < 1:
-            self.flight_phase = FlightPhase.CRUISE
-        elif self.state.velocity_down > 1:
+        elif self.state.velocity_down > 2:
             self.flight_phase = FlightPhase.DESCENT
+        else:
+            self.flight_phase = FlightPhase.CRUISE
             
+    def _apply_envelope_protection(self):
+        """Apply flight envelope protection"""
+        if not self.state:
+            return
+            
+        # Altitude limits
+        if self.state.altitude > self.envelope_limits['max_altitude']:
+            self.state.altitude = self.envelope_limits['max_altitude']
+            self.state.velocity_down = max(0.0, self.state.velocity_down)
+            
+        if self.state.altitude < self.envelope_limits['min_altitude']:
+            self.state.altitude = self.envelope_limits['min_altitude']
+            self.state.velocity_down = min(0.0, self.state.velocity_down)
+            
+        # Airspeed limits
+        if self.state.airspeed > self.envelope_limits['max_airspeed']:
+            # Reduce throttle
+            self.throttle = max(0.0, self.throttle - 0.1)
+            
+        if self.state.airspeed < self.envelope_limits['min_airspeed']:
+            # Increase throttle
+            self.throttle = min(1.0, self.throttle + 0.1)
+            
+    def step(self):
+        """Execute one simulation step"""
+        # Update flight controller if in automatic mode
+        if self.flight_controller.control_mode != "manual":
+            state_dict = self.get_telemetry()
+            controls = self.flight_controller.update(state_dict, self.dt)
+            self.set_controls(controls['throttle'], controls['elevator'], 
+                            controls['aileron'], controls['rudder'])
+        
+        # Update aircraft state
+        self.update_state()
+        
+        # Store state history
+        self._store_state_history()
+        
+        self.time += self.dt
+        
+    def _store_state_history(self):
+        """Store state history for analysis"""
+        if len(self.state_history) > 1000:  # Limit history size
+            self.state_history = self.state_history[-500:]
+            
+        self.state_history.append({
+            'time': self.time,
+            'altitude': self.state.altitude if self.state else 0.0,
+            'airspeed': self.state.airspeed if self.state else 0.0,
+            'fuel_remaining': self.state.fuel_remaining if self.state else 0.0,
+            'flight_phase': self.flight_phase.value
+        })
+        
     def get_telemetry(self) -> Dict[str, Any]:
         """Get current telemetry data"""
-        if self.state is None:
+        if not self.state:
             return {}
             
         return {
@@ -393,28 +582,64 @@ class HALEDynamics:
             'flight_phase': self.flight_phase.value,
             'controls': {
                 'throttle': self.throttle,
-                'elevator': np.degrees(self.elevator),
-                'aileron': np.degrees(self.aileron),
-                'rudder': np.degrees(self.rudder)
+                'elevator': self.elevator,
+                'aileron': self.aileron,
+                'rudder': self.rudder
             },
             'performance': {
                 'flight_time': self.flight_time,
                 'distance_traveled': self.distance_traveled,
                 'fuel_consumed': self.fuel_consumed
+            },
+            'environment': {
+                'air_density': self.state.air_density,
+                'temperature': self.state.temperature,
+                'pressure': self.state.pressure,
+                'wind_north': self.state.wind_north,
+                'wind_east': self.state.wind_east,
+                'wind_up': self.state.wind_up
             }
         }
         
     def check_flight_envelope(self) -> Dict[str, bool]:
         """Check if aircraft is within flight envelope"""
-        if self.state is None:
-            return {'valid': False}
+        if not self.state:
+            return {'within_envelope': False, 'warnings': ['No state available']}
             
-        warnings = {
-            'stall_warning': self.state.airspeed < self.params.stall_speed * 1.1,
-            'overspeed_warning': self.state.airspeed > self.params.max_speed * 0.95,
-            'altitude_warning': self.state.altitude > self.params.service_ceiling * 0.95,
-            'fuel_warning': self.state.fuel_remaining < 0.1 * self.params.mass_max_takeoff,
-            'valid': True
+        envelope_ok = True
+        warnings = []
+        
+        # Check altitude
+        if self.state.altitude > self.envelope_limits['max_altitude']:
+            envelope_ok = False
+            warnings.append('Above service ceiling')
+            
+        if self.state.altitude < self.envelope_limits['min_altitude']:
+            envelope_ok = False
+            warnings.append('Below minimum safe altitude')
+            
+        # Check airspeed
+        if self.state.airspeed > self.envelope_limits['max_airspeed']:
+            envelope_ok = False
+            warnings.append('Above maximum airspeed')
+            
+        if self.state.airspeed < self.envelope_limits['min_airspeed']:
+            envelope_ok = False
+            warnings.append('Below minimum airspeed (stall risk)')
+            
+        # Check fuel
+        if self.state.fuel_remaining < 100:  # 100kg or Wh remaining
+            warnings.append('Low fuel warning')
+            
+        return {
+            'within_envelope': envelope_ok,
+            'warnings': warnings
         }
         
-        return warnings 
+    def set_flight_controller_mode(self, mode: str):
+        """Set flight controller mode"""
+        self.flight_controller.set_control_mode(mode)
+        
+    def get_flight_controller_status(self) -> Dict[str, Any]:
+        """Get flight controller status"""
+        return self.flight_controller.get_controller_status() 

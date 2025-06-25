@@ -1104,4 +1104,144 @@ class SimulationOrchestrator:
     def close_visualization(self):
         """Close visualization window (disabled for stability)"""
         # Visualization disabled due to threading issues
-        pass 
+        pass
+
+    def _initialize_flight_sim(self):
+        """Initialize flight simulation components"""
+        try:
+            # Initialize Gazebo interface with aircraft configuration
+            from src.flight_sim.gazebo_interface import GazeboInterface, GazeboModelConfig
+            
+            # Get aircraft type from config or use default
+            aircraft_type = getattr(self.config, 'aircraft_type', 'default')
+            
+            # Create Gazebo model configuration
+            model_config = GazeboModelConfig(
+                model_name="hale_drone",
+                sdf_file="models/hale_drone.sdf",
+                initial_pose=(0.0, 0.0, 20000.0, 0.0, 0.0, 0.0),  # x, y, z, roll, pitch, yaw
+                aircraft_type=aircraft_type
+            )
+            
+            # Initialize Gazebo interface
+            self.gazebo_interface = GazeboInterface(model_config)
+            
+            # Load the model
+            if self.gazebo_interface.load_model():
+                logging.info("Flight simulation initialized successfully")
+                
+                # Set initial flight mode
+                flight_mode = getattr(self.config, 'flight_mode', 'manual')
+                self.gazebo_interface.set_flight_mode(flight_mode)
+                
+                # Set wind conditions if specified
+                if hasattr(self.config, 'wind_conditions'):
+                    self.gazebo_interface.set_wind_conditions(self.config.wind_conditions)
+                    
+            else:
+                logging.error("Failed to initialize flight simulation")
+                self.gazebo_interface = None
+                
+        except Exception as e:
+            logging.error(f"Error initializing flight simulation: {e}")
+            self.gazebo_interface = None
+
+    def step(self):
+        """Execute one simulation step"""
+        if not self.running:
+            return
+            
+        try:
+            # Step flight simulation
+            if self.gazebo_interface:
+                self.gazebo_interface.step()
+                
+            # Step network simulation
+            if self.network_sim and hasattr(self.network_sim, 'step'):
+                self.network_sim.step()
+                
+            # Step quantum simulation
+            if self.quantum_comms and hasattr(self.quantum_comms, 'step'):
+                self.quantum_comms.step()
+                
+            # Step autonomy engine
+            if self.autonomy_engine and hasattr(self.autonomy_engine, 'step'):
+                self.autonomy_engine.step()
+                
+            # Collect telemetry data
+            self._collect_telemetry()
+            
+            # Update performance metrics
+            self._update_performance_metrics()
+            
+            # Check for simulation completion
+            if self.simulation_time >= self.config.duration:
+                self.running = False
+                logging.info("Simulation completed")
+                
+            self.simulation_time += self.config.timestep
+            
+        except Exception as e:
+            logging.error(f"Error in simulation step: {e}")
+            self.running = False
+
+    def _collect_telemetry(self):
+        """Collect telemetry data from all components"""
+        try:
+            # Get flight telemetry
+            if self.gazebo_interface:
+                flight_data = self.gazebo_interface.get_model_state()
+                if flight_data:
+                    self.telemetry_data['flight'] = flight_data
+                    
+                # Get sensor data
+                sensor_data = self.gazebo_interface.get_sensor_data()
+                if sensor_data:
+                    self.telemetry_data['sensors'] = sensor_data
+                    
+                # Get flight controller status
+                controller_status = self.gazebo_interface.flight_controller.get_controller_status()
+                if controller_status:
+                    self.telemetry_data['flight_controller'] = controller_status
+                    
+            # Get network telemetry
+            if self.network_sim:
+                try:
+                    if hasattr(self.network_sim, 'get_network_status'):
+                        network_status = self.network_sim.get_network_status()
+                        if isinstance(network_status, dict):
+                            self.telemetry_data['network'] = network_status
+                        else:
+                            self.telemetry_data['network'] = {'status': 'Mock network system active'}
+                    else:
+                        self.telemetry_data['network'] = {'status': 'Mock network system active'}
+                except Exception as e:
+                    self.telemetry_data['network'] = {'status': f'Network error: {e}'}
+                    
+            # Get quantum telemetry
+            if self.quantum_comms:
+                try:
+                    if hasattr(self.quantum_comms, 'get_status'):
+                        quantum_status = self.quantum_comms.get_status()
+                        self.telemetry_data['quantum'] = quantum_status
+                    else:
+                        self.telemetry_data['quantum'] = {'status': 'Mock quantum system active'}
+                except Exception as e:
+                    self.telemetry_data['quantum'] = {'status': f'Quantum error: {e}'}
+                    
+            # Get autonomy telemetry
+            if self.autonomy_engine:
+                try:
+                    if hasattr(self.autonomy_engine, 'get_status'):
+                        autonomy_status = self.autonomy_engine.get_status()
+                        self.telemetry_data['autonomy'] = autonomy_status
+                    else:
+                        self.telemetry_data['autonomy'] = {'status': 'Mock autonomy system active'}
+                except Exception as e:
+                    self.telemetry_data['autonomy'] = {'status': f'Autonomy error: {e}'}
+                    
+            # Add timestamp
+            self.telemetry_data['timestamp'] = self.simulation_time
+            
+        except Exception as e:
+            logging.error(f"Error collecting telemetry: {e}") 
