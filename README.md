@@ -219,10 +219,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Contact
 
-- **Project Lead**: [Your Name]
-- **Email**: [your.email@example.com]
-- **GitHub**: [@your-username]
-- **Discord**: [Project Discord Server]
+- **Project Lead**: [Simon Yoon]
+- **Email**: [simon.yoon.swe@gmail.com]
+- **GitHub**: [@simonyooon]
+
 
 ---
 

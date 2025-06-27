@@ -223,6 +223,28 @@ class SimulationOrchestrator:
                 save_network_data=config.get('save_network_data', True),
                 save_quantum_data=config.get('save_quantum_data', True)
             )
+        elif hasattr(config, 'get_simulation_config'):
+            # ConfigManager object - extract simulation config
+            sim_config = config.get_simulation_config()
+            self.config = SimulationConfig(
+                duration=sim_config.get('duration', 3600.0),
+                timestep=sim_config.get('timestep', 0.01),
+                real_time_factor=sim_config.get('real_time_factor', 1.0),
+                aircraft_params=sim_config.get('aircraft_params'),
+                mission_type=sim_config.get('mission_type'),
+                waypoints=sim_config.get('waypoints'),
+                network_topology=sim_config.get('network_topology', 'mesh'),
+                num_drones=sim_config.get('num_drones', 3),
+                ground_stations=sim_config.get('ground_stations'),
+                security_level=sim_config.get('security_level'),
+                enable_qkd=sim_config.get('enable_qkd', True),
+                wind_conditions=sim_config.get('wind_conditions', (0.0, 0.0, 0.0)),
+                jamming_sources=sim_config.get('jamming_sources'),
+                output_directory=sim_config.get('output_directory', 'simulation_results'),
+                save_telemetry=sim_config.get('save_telemetry', True),
+                save_network_data=sim_config.get('save_network_data', True),
+                save_quantum_data=sim_config.get('save_quantum_data', True)
+            )
         else:
             self.config = config
             
@@ -253,7 +275,7 @@ class SimulationOrchestrator:
         # Performance monitoring
         self.performance_metrics = {
             'start_time': time.time(),
-            'real_time_factor': self.config.real_time_factor,
+            'real_time_factor': getattr(self.config, 'real_time_factor', 1.0),
             'cpu_usage': 0.0,
             'memory_usage': 0.0,
             'simulation_rate': 0.0
